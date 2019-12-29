@@ -9,18 +9,21 @@ import java.util.function.Consumer
 
 /**
  * @author VisualDust
- * 20191227
+ * @since 0.0.0.1
+ * last update on 20191227
  */
 
 @Component
 class ServerSideMqttClient {
 
     companion object {
+        /**
+         * variables here are global and will be used as default connection configuration
+         */
         @JvmField
         var serverAddr = "tcp://mqtt.visualdust.com"
         @JvmField
         var serverIdAsClient = "server"
-
     }
 
     private var initialSubscribedTopics: List<String> = listOf(
@@ -29,7 +32,7 @@ class ServerSideMqttClient {
     )
 
     //Init a mqtt client to oversee messages
-    var mqttClient = MqttClient(serverAddr, serverIdAsClient)
+    lateinit var mqttClient: MqttClient
 
     //An in-queue publisher
     var publisher = Publisher(this)
@@ -40,6 +43,7 @@ class ServerSideMqttClient {
             field = value
         }
 
+    //password is readonly out of secure consideration
     protected var password: String? = null
         set(value) {
             field = value
@@ -47,8 +51,14 @@ class ServerSideMqttClient {
 
     var callBackResolver = ObjectiveMqttCallBack()
 
-    public constructor() {
-
+    /**
+     * <p>Initialize a server-side mqtt client</p>
+     * @param serverAddr declares the address of the mqtt broker with treaty-prefix. for example: "tcp://mqtt.visualdust.com". keep it empty to use default.
+     * @param serverIdAsClient declares the id of this server-side client which will be used when connecting to the mqtt broker keep it empty to use default.
+     */
+    public constructor(serverAddr: String = Companion.serverAddr,
+                       serverIdAsClient: String = Companion.serverIdAsClient) {
+        mqttClient = MqttClient(serverAddr, serverIdAsClient)
     }
 
     init {
@@ -60,6 +70,10 @@ class ServerSideMqttClient {
         mqttClient.setCallback(callBackResolver)
     }
 
+    /**
+     * <p>This will let the ServerSideMqttClient connect to the broker as a client and subscribe all the pre-subscribed topics. </p>
+     * @param autoReconnect announces let the insider mqtt client auto reconnect or not.
+     */
     public fun connect(autoReconnect: Boolean = false) {
         mqttConnectOptions.isAutomaticReconnect = autoReconnect
         try {
