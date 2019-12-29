@@ -1,8 +1,6 @@
 package com.visualdust.deliveryBackYard.delivery
 
-import com.visualdust.deliveryBackYard.commomn.EventRW
-import java.lang.Exception
-import java.util.*
+import com.visualdust.deliveryBackYard.InfoManagement.InfoExtension
 
 /**
  * @author VisualDust
@@ -11,13 +9,13 @@ import java.util.*
  */
 class PackageInfo {
     lateinit protected var id: String
-    var name = ""
+    var name = "package"
     var description = "A package"
     lateinit var sender: ConsumerInfo
     lateinit var receiver: ConsumerInfo
     lateinit var status: PackageStatus
     //TODO add all package properties here
-
+    var extension = InfoExtension()
 
     constructor(id: String, name: String) {
         this.name = name

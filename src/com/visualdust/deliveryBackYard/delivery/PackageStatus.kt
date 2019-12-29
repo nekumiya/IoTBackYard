@@ -1,8 +1,6 @@
 package com.visualdust.deliveryBackYard.delivery
 
-import com.visualdust.deliveryBackYard.commomn.EventRW
-import java.lang.Exception
-import java.util.*
+import com.visualdust.deliveryBackYard.InfoManagement.InfoExtension
 
 /**
  * @author VisualDust
@@ -15,7 +13,7 @@ class PackageStatus {
     var hasBeenSignedFor = false
     var nowLocation: Location? = null
     //todo add all necessary status information here
-    var extention = InforExtention()
+    var extension = InfoExtension()
 
     constructor() {
     }

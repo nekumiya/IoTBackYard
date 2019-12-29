@@ -52,12 +52,18 @@ class ServerSideMqttClient {
     var callBackResolver = ObjectiveMqttCallBack()
 
     /**
-     * <p>Initialize a server-side mqtt client</p>
-     * @param serverAddr declares the address of the mqtt broker with treaty-prefix. for example: "tcp://mqtt.visualdust.com". keep it empty to use default.
-     * @param serverIdAsClient declares the id of this server-side client which will be used when connecting to the mqtt broker keep it empty to use default.
+     * <p>Initialize a server-side mqtt client using default configuration</p>
      */
-    public constructor(serverAddr: String = Companion.serverAddr,
-                       serverIdAsClient: String = Companion.serverIdAsClient) {
+    public constructor() {
+        mqttClient = MqttClient(Companion.serverAddr, Companion.serverIdAsClient)
+    }
+
+    /**
+     * <p>Initialize a server-side mqtt client</p>
+     * @param serverAddr declares the address of the mqtt broker with treaty-prefix. for example: "tcp://mqtt.visualdust.com".
+     * @param serverIdAsClient declares the id of this server-side client which will be used when connecting to the mqtt broker.
+     */
+    public constructor(serverAddr: String, serverIdAsClient: String) {
         mqttClient = MqttClient(serverAddr, serverIdAsClient)
     }
 
@@ -113,6 +119,6 @@ class ServerSideMqttClient {
     public fun unsubscribeTopics(topics: Collection<String>) = mqttClient.unsubscribe(topics.toTypedArray())
 
     //resolvers for message arrival
-    public fun addResolver(consumer: Consumer<PropertiedCallBack>) = callBackResolver.addResolver(consumer)
+    public fun addResolver(consumer: Consumer<PropertiedCallBack>) = callBackResolver.addOnReceivingResolver(consumer)
 
 }
