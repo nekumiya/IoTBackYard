@@ -66,14 +66,14 @@ class ServerSideMqttClient {
             mqttClient.connect(mqttConnectOptions)
             EventRW.WriteAsRichText(true,
                     this.toString(),
-                    "Connected to ${mqttClient.currentServerURI} with the identified uid${mqttConnectOptions.userName}")
+                    "Connected to ${mqttClient.currentServerURI} with the identified uid ${mqttConnectOptions.userName}")
             //Subscribe topics
             for (topic in initialSubscribedTopics)
                 mqttClient.subscribe(topic)
         } catch (e: Exception) {
             EventRW.WriteAsRichText(false,
                     this.toString(),
-                    "Failed when connecting to ${mqttClient.currentServerURI} with the identified uid${mqttConnectOptions.userName}, client threw $e")
+                    "Failed when connecting to ${mqttClient.currentServerURI} with the identified uid ${mqttConnectOptions.userName}, client threw $e")
         }
     }
 

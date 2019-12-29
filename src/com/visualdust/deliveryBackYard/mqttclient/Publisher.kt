@@ -13,7 +13,7 @@ class Publisher {
     }
 
     lateinit var mqttClient: ServerSideMqttClient
-    var messageVector = Vector<MqttMessageWithTopic>()
+    var messageVector = mutableListOf<MqttMessageWithTopic>()
     var publishingThread = PublishingThread(this)
     var publishTimeOut: Long = 10
 
@@ -49,15 +49,15 @@ class Publisher {
                     EventRW.WriteAsRichText(false, this.toString(),
                             "Failed when publishing message $nowMessage")
                 }
-                publisher.messageVector.removeElementAt(0)
+                publisher.messageVector.removeAt(0)
             }
         }
     }
 }
 
 /**
- * @param MqttMessageWithTopic packs up a single topic and a piece of message to make
- * them into a single arg
+ * <p> packs up a single topic and a piece of message to make them into a single arg.
+ * </p>
  */
 class MqttMessageWithTopic {
     lateinit var topic: MqttTopic

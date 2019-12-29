@@ -3,15 +3,16 @@ package com.visualdust.deliveryBackYard.delivery
 import java.util.*
 
 class PackageInfo {
-    protected var id = UUID.randomUUID().toString()
+    lateinit protected var id: String
     var name = ""
     var description = "A package"
-    var inBoxTempreture: Double = 0.0
-    var hasBeenDelivered = false
+    lateinit var sender: ConsumerInfo
+    lateinit var receiver: ConsumerInfo
+    lateinit var status: PackageStatus
     //TODO add all package properties here
 
     constructor() {}
-    constructor(name: String, id: String) {
+    constructor(id: String, name: String) {
         this.name = name
         this.id = id
     }
