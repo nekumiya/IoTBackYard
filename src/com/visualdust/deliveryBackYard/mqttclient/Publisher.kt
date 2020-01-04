@@ -54,20 +54,3 @@ class Publisher {
         }
     }
 }
-
-/**
- * <p> packs up a single topic and a piece of message to make them into a single arg.
- * </p>
- */
-class MqttMessageWithTopic {
-    lateinit var topic: MqttTopic
-    lateinit var message: MqttMessage
-
-    constructor(message: MqttMessage, topic: MqttTopic) {
-        this.topic = topic
-        this.message = message
-    }
-
-    override fun toString(): String = "$topic//${message.payload}"
-
-}

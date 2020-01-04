@@ -20,7 +20,6 @@ class InfoExtension : ITagManage {
 
     fun addTag(key: String, value: String) = map.put(key, value)
 
-
     override fun removeTag(tagKey: String) {
         if (map.remove(tagKey).equals(null))
             EventRW.Write(Exception("$this : exception occurred when removing $tagKey, cause key not found"))

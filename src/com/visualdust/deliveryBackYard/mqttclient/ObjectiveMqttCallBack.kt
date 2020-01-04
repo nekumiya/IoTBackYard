@@ -14,28 +14,33 @@ import java.util.function.Consumer
  * last update on 20191229
  */
 class ObjectiveMqttCallBack : MqttCallback {
-    private var onReceivingResolvers = Vector<Consumer<PropertiedCallBack>>()
+    private var onReceivingResolvers = Vector<Consumer<MqttMessageWithTopic>>()
+    private var onConnectionLostResolver: Consumer<Throwable>? = null
+        set(value) {
+            field = value
+        }
 
     constructor() {}
 
     /**
      *@param consumer is a consumer function allows only one argument(received message) pass into it and return nothing
      * @see Consumer
-     * @see PropertiedCallBack
+     * @see MqttMessageWithTopic
      */
-    public fun addOnReceivingResolver(consumer: Consumer<PropertiedCallBack>) = onReceivingResolvers.add(consumer)
+    public fun addOnReceivingResolver(consumer: Consumer<MqttMessageWithTopic>) = onReceivingResolvers.add(consumer)
 
-    override fun messageArrived(topic: String?, message: MqttMessage?) {
+    override fun messageArrived(topic: String, message: MqttMessage?) {
         for (resolver in onReceivingResolvers)
-            resolver.accept(PropertiedCallBack(topic, message.toString()))
+            resolver.accept(MqttMessageWithTopic(message.toString(), topic))
     }
 
     override fun connectionLost(p0: Throwable?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (p0 != null)
+            onConnectionLostResolver?.accept(p0)
     }
 
     override fun deliveryComplete(deliveryToken: IMqttDeliveryToken?) {
         var token = deliveryToken as MqttDeliveryToken
-        EventRW.WriteAsRichText(true,token.toString(),", Delivery complete")
+        EventRW.WriteAsRichText(true, token.toString(), ", Delivery complete")
     }
 }

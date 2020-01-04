@@ -1,5 +1,22 @@
 ![IotBackYard](http://visualdust.com/kexie/repository/IotBackYard/Images/Head.png)
 
-💩An IoT server-side java client based on mqtt and http
+ ![Language-java](https://img.shields.io/badge/Language-java_kotlin-orange) 
+ [![VisualDust](https://img.shields.io/badge/Assignment-VisualDust-darkgreen)](https://github.com/VisualDust) 
+ [![](https://img.shields.io/badge/Email-VisualDust%40outlook.com-green)](VisualDust@outlook.com)
+ ![License-MIT](https://img.shields.io/badge/License-MIT-blue) 
 
-Still constructing....
+ ---
+
+ # IoTBackYard:痛击友军的物联网后端  
+
+* 目前处于测试阶段。测试方法 :  
+
+> 对于物联网终端 :   
+>使用MQTT协议发布消息到`tcp:/mqtt.visualdust.com`。消息数据类型为字符串。格式为:  
+>"分隔符,包裹ID,包裹名称,扩展key01,扩展value01,扩key02,扩展value02,扩展key03,扩展value03......"(不括双引号)  
+>
+> 样例: 有一个包裹,id为3a4b7c9d-3710-409a-aa8c-327396a7f88e,名称为'一个裹的名称',它的包裹内温度为20度,它的重量为5。基站将它编成由逗号分隔的字符串,那么基站应该发送的信息为:  
+>",,3a4b7c9d-3710-409a-aa8c-327396a7f88e,一个包的名称,temprature,20,weight,5"(不包括双引号)  
+>  
+>当然,这条信息可以变得更长。服务器在接收到这条信息后，除了id和名称会单独保管以外，会将后面不定长的扩展信息储存在一张哈希表中。一个包裹的任何扩展信息都可以使用相应的key取得。并且，扩展信息可以乱序。  
+>注:这里的id推荐使用UUID国际标准生成。详情百科UUID。

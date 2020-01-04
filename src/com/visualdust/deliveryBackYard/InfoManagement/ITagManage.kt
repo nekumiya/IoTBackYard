@@ -11,7 +11,7 @@ interface ITagManage {
     /**
      * <p>To add a key-value mapping relationship. In another word, add a tag.</p>
      */
-    fun addTag(tag: Tag):String?
+    fun addTag(tag: Tag): String?
 
     /**
      * <p>find and remove a tag using a key, also delete it's value
@@ -28,7 +28,7 @@ interface ITagManage {
     fun setValueOfKey(key: String, value: String)
 
     /**
-     * <p>To check if there is a key with the name
+     * <p>To check if there is a key with the name of tag
      * @param key</p>
      */
     fun checkIfThereIs(key: String): Boolean

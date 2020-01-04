@@ -1,6 +1,8 @@
 package com.visualdust.deliveryBackYard.delivery
 
 import com.visualdust.deliveryBackYard.InfoManagement.InfoExtension
+import com.visualdust.deliveryBackYard.commomn.EventRW
+import com.visualdust.deliveryBackYard.mqttclient.MqttMessageWithTopic
 
 /**
  * @author VisualDust
@@ -9,18 +11,31 @@ import com.visualdust.deliveryBackYard.InfoManagement.InfoExtension
  */
 class PackageInfo {
     lateinit protected var id: String
-    var name = "package"
-    var description = "A package"
-    lateinit var sender: ConsumerInfo
-    lateinit var receiver: ConsumerInfo
-    lateinit var status: PackageStatus
-    //TODO add all package properties here
-    var extension = InfoExtension()
+    var name = "null"
+    public var extension = InfoExtension()
+
+    /**
+     * @param mqttMessage to initialize a [PackageInfo] using a [String]
+     * * Formatted message which can be used to initialize a package should be
+     * look like this :
+     * <split> split <id> split <name> split <tag-key-01> split <tag-value-01> split <tag-key-02> split <tag-value-02>....
+     */
+    constructor(mqttMessage: String) {
+        var messageSplit = mqttMessage[0]
+        var items = mqttMessage.split(messageSplit)
+        if (items.size < 4 || items.size % 2 != 0)
+            EventRW.WriteAsRichText(false, this.toString(), "Could not use ${mqttMessage} to initialize, format not match")
+        else {
+            id = items[2]
+            name = items[3]
+            var itemIndex = 4
+            while (itemIndex <= items.lastIndex)
+                extension.addTag(items[itemIndex++], items[itemIndex++])
+        }
+    }
 
     constructor(id: String, name: String) {
         this.name = name
         this.id = id
     }
-
-
 }

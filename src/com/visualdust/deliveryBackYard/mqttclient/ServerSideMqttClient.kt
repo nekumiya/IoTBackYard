@@ -3,6 +3,8 @@ package com.visualdust.deliveryBackYard.mqttclient
 import com.visualdust.deliveryBackYard.commomn.EventRW
 import org.eclipse.paho.client.mqttv3.MqttClient
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
+import org.eclipse.paho.client.mqttv3.MqttMessage
+import org.eclipse.paho.client.mqttv3.MqttTopic
 import org.springframework.stereotype.Component
 import java.lang.Exception
 import java.util.function.Consumer
@@ -55,7 +57,7 @@ class ServerSideMqttClient {
      * <p>Initialize a server-side mqtt client using default configuration</p>
      */
     public constructor() {
-        mqttClient = MqttClient(Companion.serverAddr, Companion.serverIdAsClient)
+
     }
 
     /**
@@ -68,6 +70,7 @@ class ServerSideMqttClient {
     }
 
     init {
+        mqttClient = MqttClient(Companion.serverAddr, Companion.serverIdAsClient)
         //Initialize user name and password
         mqttConnectOptions.userName = serverIdAsClient
         mqttConnectOptions.password = password?.toCharArray() ?: charArrayOf()
@@ -110,7 +113,6 @@ class ServerSideMqttClient {
         }
     }
 
-
     //topic subscribing methods
 
     public fun subscribeTopic(topic: String) = mqttClient.subscribe(topic)
@@ -119,6 +121,10 @@ class ServerSideMqttClient {
     public fun unsubscribeTopics(topics: Collection<String>) = mqttClient.unsubscribe(topics.toTypedArray())
 
     //resolvers for message arrival
-    public fun addResolver(consumer: Consumer<PropertiedCallBack>) = callBackResolver.addOnReceivingResolver(consumer)
+    public fun addResolver(consumer: Consumer<MqttMessageWithTopic>) = callBackResolver.addOnReceivingResolver(consumer)
 
+    public fun publish(message: String, topic: String) =
+            publish(MqttMessageWithTopic(MqttMessage(message.toByteArray()), MqttTopic(topic, null)))
+
+    public fun publish(propertiedCallBack: MqttMessageWithTopic) = publisher.publishToQueue(propertiedCallBack)
 }
