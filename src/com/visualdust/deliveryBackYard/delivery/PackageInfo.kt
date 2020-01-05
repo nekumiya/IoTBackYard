@@ -23,9 +23,9 @@ class PackageInfo {
     constructor(mqttMessage: String) {
         var messageSplit = mqttMessage[0]
         var items = mqttMessage.split(messageSplit)
-        if (items.size < 4 || items.size % 2 != 0)
-            EventRW.WriteAsRichText(false, this.toString(), "Could not use ${mqttMessage} to initialize, format not match")
-        else {
+        if (items.size < 4 || items.size % 2 != 0) {
+            EventRW.WriteAsRichText(false, this.toString(), "Could not use ${mqttMessage} to initialize, format not match. Item[" + items.size + "]=" + items.toString())
+        } else {
             id = items[2]
             name = items[3]
             var itemIndex = 4

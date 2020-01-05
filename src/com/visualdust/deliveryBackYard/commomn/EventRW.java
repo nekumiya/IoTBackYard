@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class EventRW {
     public static File logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
     public static OutputStream logstream;
+    public static LocalDateTime dateTime = LocalDateTime.now();
 
     public static void Write(Exception e) {
         try {
@@ -21,7 +22,7 @@ public class EventRW {
             System.out.println(e1.toString());
             e1.printStackTrace();
         }
-        System.out.println(e.toString());
+        System.out.println(e.toString() + "\n>>>");
         e.printStackTrace();
     }
 
@@ -33,11 +34,11 @@ public class EventRW {
             System.out.println(e1.toString());
             e1.printStackTrace();
         }
-        System.out.println(event);
+        System.out.println(event + "\n>>>");
     }
 
     public static void WriteAsRichText(boolean succeed, String whoOccur, String extraMessage) {
-        String str = /*"<color=" + (succeed ? "green" : "red") + ">" + */(succeed ? "[√]" : "[×]")/* + "</color> " */+
+        String str = /*"<color=" + (succeed ? "green" : "red") + ">" + */(succeed ? "[√]" : "[×]")/* + "</color> " */ +
                 whoOccur + /*"<color=grey>" +*/ extraMessage /*+ "</color>"*/;
         Write(str);
     }
@@ -50,6 +51,13 @@ public class EventRW {
             System.out.println(e1.toString());
             e1.printStackTrace();
         }
-        System.out.println(string);
+        System.out.println(string + "\n>>>");
+    }
+
+    public static void updateTime() {
+        if (LocalDateTime.now().getDayOfYear() != dateTime.getDayOfYear()) {
+            dateTime = LocalDateTime.now();
+            logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
+        }
     }
 }

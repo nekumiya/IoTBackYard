@@ -1,5 +1,7 @@
 package com.visualdust.deliveryBackYard;
 
+import com.visualdust.deliveryBackYard.commomn.EventRW;
+import com.visualdust.deliveryBackYard.commomn.Resource;
 import com.visualdust.deliveryBackYard.delivery.PackageInfo;
 import com.visualdust.deliveryBackYard.mqttclient.ServerSideMqttClient;
 
@@ -16,11 +18,12 @@ public class Launcher {
         });
         mqttClient.addResolver(mqttMessageWithTopic -> {
             String id = new PackageInfo(mqttMessageWithTopic.getMessage().toString()).getID();
-            mqttClient.publish("Package received procedure complete", id+"/ServerSideCallback");
+            mqttClient.publish("Package received procedure complete", id + "/ServerSideCallback");
         });
         mqttClient.connect(true);
         mqttClient.subscribeTopic("+/test");
         (new ScannerThread(mqttClient)).start();
+        (new ClockThread()).start();
     }
 
     static class ScannerThread extends Thread {
@@ -35,16 +38,37 @@ public class Launcher {
         public void run() {
             while (true) {
                 String userInput = scanner.nextLine();
-                if (userInput.startsWith("subscribe")) {
-                    System.out.println("Input a topic would you like to subscribe: ");
+                if (userInput.startsWith("publish")) {
+                    EventRW.Write("Input a topic where you want to publish your message ");
+                    String topic = scanner.nextLine();
+                    EventRW.Write("Input a message >>>");
+                    String message = scanner.nextLine();
+                    mqttClient.publish(message, topic);
+                } else if (userInput.startsWith("subscribe")) {
+                    EventRW.Write("Input a topic would you like to subscribe ");
                     userInput = scanner.nextLine();
                     mqttClient.subscribeTopic(userInput);
                 } else if (userInput.startsWith("unsubscribe")) {
-                    System.out.println("Input a topic would you like to unsubscribe: ");
+                    EventRW.Write("Input a topic would you like to unsubscribe ");
                     userInput = scanner.nextLine();
                     mqttClient.unsubscribeTopic(userInput);
                 } else {
-                    System.out.println("Sorry, you can only subscribe or unsubscribe topics here.");
+                    EventRW.Write("Sorry, you can only publish message or subscribe or unsubscribe topics here.");
+                }
+            }
+        }
+    }
+
+    static class ClockThread extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    EventRW.Write("----------" + LocalDateTime.now() + ">Version=" + Resource.VERSION + ">ServerRuntimeClockBump----------");
+                    EventRW.updateTime();
+                    sleep(60000 * 60);
+                } catch (Exception e) {
+                    EventRW.Write(e);
                 }
             }
         }
