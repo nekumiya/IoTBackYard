@@ -38,4 +38,6 @@ class PackageInfo {
         this.name = name
         this.id = id
     }
+
+    public fun getID(): String = this.id
 }

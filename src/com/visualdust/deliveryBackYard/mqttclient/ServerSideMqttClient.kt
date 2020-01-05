@@ -74,8 +74,10 @@ class ServerSideMqttClient {
         //Initialize user name and password
         mqttConnectOptions.userName = serverIdAsClient
         mqttConnectOptions.password = password?.toCharArray() ?: charArrayOf()
+        mqttConnectOptions.keepAliveInterval = 20
         //Set bump interval
         mqttConnectOptions.keepAliveInterval = 10
+        mqttConnectOptions.isCleanSession = true
         mqttClient.setCallback(callBackResolver)
     }
 
@@ -115,10 +117,9 @@ class ServerSideMqttClient {
 
     //topic subscribing methods
 
-    public fun subscribeTopic(topic: String) = mqttClient.subscribe(topic)
+    public fun subscribeTopic(topic: String) = mqttClient.subscribe(topic, 1)
+    public fun subscribeTopic(topic: String, qos: Int) = mqttClient.subscribe(topic, qos)
     public fun unsubscribeTopic(topic: String) = mqttClient.unsubscribe(topic)
-    public fun subscribeTopics(topics: Collection<String>) = mqttClient.subscribe(topics.toTypedArray())
-    public fun unsubscribeTopics(topics: Collection<String>) = mqttClient.unsubscribe(topics.toTypedArray())
 
     //resolvers for message arrival
     public fun addResolver(consumer: Consumer<MqttMessageWithTopic>) = callBackResolver.addOnReceivingResolver(consumer)
@@ -126,5 +127,5 @@ class ServerSideMqttClient {
     public fun publish(message: String, topic: String) =
             publish(MqttMessageWithTopic(MqttMessage(message.toByteArray()), MqttTopic(topic, null)))
 
-    public fun publish(propertiedCallBack: MqttMessageWithTopic) = publisher.publishToQueue(propertiedCallBack)
+    public fun publish(propertiedCallBack: MqttMessageWithTopic) = publisher.publish(propertiedCallBack)
 }
