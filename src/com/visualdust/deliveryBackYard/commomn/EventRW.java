@@ -37,8 +37,8 @@ public class EventRW {
     }
 
     public static void WriteAsRichText(boolean succeed, String whoOccur, String extraMessage) {
-        String str = "<color=" + (succeed ? "green" : "red") + ">" + (succeed ? "[√]" : "[×]") + "</color> " +
-                whoOccur + "<color=grey>" + extraMessage + "</color>";
+        String str = /*"<color=" + (succeed ? "green" : "red") + ">" + */(succeed ? "[√]" : "[×]")/* + "</color> " */+
+                whoOccur + /*"<color=grey>" +*/ extraMessage /*+ "</color>"*/;
         Write(str);
     }
 

@@ -18,4 +18,5 @@
 ",,3a4b7c9d-3710-409a-aa8c-327396a7f88e,一个包的名称,temprature,20,weight,5"(不包括双引号)  
 当然,这条信息可以变得更长。服务器在接收到这条信息后，除了id和名称会单独保管以外，会将后面不定长的扩展信息储存在一张哈希表中。一个包裹的任何扩展信息都可以使用相应的key取得。并且，扩展信息可以乱序。  
 注:这里的id推荐使用UUID国际标准生成。详情百科UUID。  
-当你发送了这条消息后，服务器将在主题id/ServerSideCallBack下(其中id为你发送的信息的id)发布一条内容为"Package received procedure complete"来表示服务器收到并解析了你的消息，测试成功。
+当你发送了这条消息后，服务器将在主题id/ServerSideCallBack下(其中id为你发送的信息的id)发布一条内容为"Package received procedure complete"来表示服务器收到并解析了你的消息，测试成功。  
+当然，每个包裹的ID应该不一样。所以针对每个不同的包裹ID服务端只处理一次。再次发送需要换一个包裹ID。
