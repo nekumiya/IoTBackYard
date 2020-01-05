@@ -117,15 +117,31 @@ class ServerSideMqttClient {
 
     //topic subscribing methods
 
-    public fun subscribeTopic(topic: String) = mqttClient.subscribe(topic, 1)
-    public fun subscribeTopic(topic: String, qos: Int) = mqttClient.subscribe(topic, qos)
-    public fun unsubscribeTopic(topic: String) = mqttClient.unsubscribe(topic)
+    public fun subscribeTopic(topic: String) {
+        mqttClient.subscribe(topic, 1)
+        EventRW.Write("Subscribed topic \"$topic\" from $this")
+    }
+
+    public fun subscribeTopic(topic: String, qos: Int) {
+        mqttClient.subscribe(topic, qos)
+        EventRW.Write("Subscribed topic \"$topic\" from $this, qos=$qos")
+    }
+
+    public fun unsubscribeTopic(topic: String) {
+        mqttClient.unsubscribe(topic)
+        EventRW.Write("Unsubscribed topic \"$topic\" from $this")
+    }
 
     //resolvers for message arrival
-    public fun addResolver(consumer: Consumer<MqttMessageWithTopic>) = callBackResolver.addOnReceivingResolver(consumer)
+    public fun addResolver(consumer: Consumer<MqttMessageWithTopic>) {
+        callBackResolver.addOnReceivingResolver(consumer)
+        EventRW.Write("Added resolver: $consumer to $this")
+    }
 
-    public fun publish(message: String, topic: String) =
-            publish(MqttMessageWithTopic(MqttMessage(message.toByteArray()), MqttTopic(topic, null)))
+    public fun publish(message: String, topic: String) = publish(MqttMessageWithTopic(MqttMessage(message.toByteArray()), MqttTopic(topic, null)))
 
-    public fun publish(propertiedCallBack: MqttMessageWithTopic) = publisher.publish(propertiedCallBack)
+    public fun publish(mqttMessageWithTopic: MqttMessageWithTopic) {
+        publisher.publish(mqttMessageWithTopic)
+        EventRW.Write("$this published \"$mqttMessageWithTopic\"")
+    }
 }

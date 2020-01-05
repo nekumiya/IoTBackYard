@@ -11,6 +11,8 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class Launcher {
+    static LocalDateTime launchTimeStamp = LocalDateTime.now();
+
     public static void main(String[] args) {
         ServerSideMqttClient mqttClient = new ServerSideMqttClient();
         mqttClient.addResolver(mqttMessageWithTopic -> {
@@ -41,7 +43,7 @@ public class Launcher {
                 if (userInput.startsWith("publish")) {
                     EventRW.Write("Input a topic where you want to publish your message ");
                     String topic = scanner.nextLine();
-                    EventRW.Write("Input a message >>>");
+                    EventRW.Write("Input a message");
                     String message = scanner.nextLine();
                     mqttClient.publish(message, topic);
                 } else if (userInput.startsWith("subscribe")) {
@@ -60,11 +62,11 @@ public class Launcher {
     }
 
     static class ClockThread extends Thread {
+
         @Override
         public void run() {
             while (true) {
                 try {
-                    EventRW.Write("----------" + LocalDateTime.now() + ">Version=" + Resource.VERSION + ">ServerRuntimeClockBump----------");
                     EventRW.updateTime();
                     sleep(60000 * 60);
                 } catch (Exception e) {

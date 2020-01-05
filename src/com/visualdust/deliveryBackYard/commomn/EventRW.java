@@ -1,9 +1,8 @@
 package com.visualdust.deliveryBackYard.commomn;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -46,7 +45,7 @@ public class EventRW {
     public static void WriteStrOnly(String string) {
         try {
             logstream = new FileOutputStream(logoutfile, true);
-            logstream.write((string + "  \r\n").getBytes());
+            logstream.write((string).getBytes());
         } catch (Exception e1) {
             System.out.println(e1.toString());
             e1.printStackTrace();
@@ -54,10 +53,38 @@ public class EventRW {
         System.out.println(string + "\n>>>");
     }
 
+    public static void CoverWith(String string) {
+        try {
+            logstream = new FileOutputStream(logoutfile, false);
+            logstream.write((string).getBytes());
+        } catch (Exception e1) {
+            System.out.println(e1.toString());
+            e1.printStackTrace();
+        }
+    }
+
     public static void updateTime() {
-        if (LocalDateTime.now().getDayOfYear() != dateTime.getDayOfYear()) {
+        if (true) {
             dateTime = LocalDateTime.now();
-            logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
+
+            try {
+                File readerFile = new File(Resource.VERSION + "_Runtime");
+                logoutfile = new File(Resource.VERSION + "_Runtime");
+                if (!readerFile.exists()) {
+                    WriteStrOnly("0");
+                }
+                InputStream inputStream = new FileInputStream(readerFile);
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+                String str = bufferedReader.readLine();
+                int runtime = Integer.valueOf(str);
+                CoverWith(String.valueOf(++runtime));
+                logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
+                EventRW.Write("----------" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
+                        ">ServerRuntimeClockBump: " + runtime +
+                        "hours after server launch----------");
+            } catch (Exception e) {
+                EventRW.Write(e);
+            }
         }
     }
 }
