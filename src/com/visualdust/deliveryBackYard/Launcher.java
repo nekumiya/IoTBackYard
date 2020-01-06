@@ -1,18 +1,15 @@
 package com.visualdust.deliveryBackYard;
 
 import com.visualdust.deliveryBackYard.commomn.EventRW;
-import com.visualdust.deliveryBackYard.commomn.Resource;
+import com.visualdust.deliveryBackYard.commomn.LinedFile;
 import com.visualdust.deliveryBackYard.delivery.PackageInfo;
 import com.visualdust.deliveryBackYard.mqttclient.ServerSideMqttClient;
 import com.visualdust.deliveryBackYard.mqttclient.ServerSideMqttClientConfigure;
 import com.visualdust.deliveryBackYard.mqttclient.Terminal;
-import org.eclipse.paho.client.mqttv3.MqttClient;
 
 import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class Launcher {
@@ -45,14 +42,13 @@ public class Launcher {
         ServerSideMqttClient mqttClient = new ServerSideMqttClient(configure);
 
         /**
-         * Creating mqtt client...
+         * Creating mqtt client
          */
         mqttClient.connect(true);
-        Terminal terminal = new Terminal(mqttClient);
         (new ClockThread(mqttClient)).start();
 
         /**
-         * For test only...
+         * For test only
          */
         mqttClient.addResolver(mqttMessageWithTopic -> {
             System.out.println("<MessageReceived>: " + LocalDateTime.now() + " > " + mqttMessageWithTopic.toString());
@@ -63,7 +59,11 @@ public class Launcher {
                 mqttClient.publish("Package received procedure complete", id + "/ServerSideCallback");
             }
         });
-        mqttClient.subscribeTopic("+/test");
+
+        /**
+         * Start post processing
+         */
+        (new PostProcessingThread(mqttClient)).start();
     }
 
 
@@ -88,6 +88,43 @@ public class Launcher {
                     EventRW.Write(e);
                 }
             }
+        }
+    }
+
+    static class PostProcessingThread extends Thread {
+        ServerSideMqttClient mqttClient;
+
+        public PostProcessingThread(ServerSideMqttClient mqttClient) {
+            this.mqttClient = mqttClient;
+        }
+
+        @Override
+        public void run() {
+            /**
+             * Subscribe pre added topics
+             */
+            EventRW.Write("Launcher postprocessing......");
+            try {
+                File topicFile = new File("startupsubscribes");
+                if (!topicFile.exists()) {
+                    EventRW.WriteAsRichText(false, "Launcher", "startupsubscribe not exist");
+
+                    EventRW.Write("Trying to create startupsubscribe file......");
+                    PrintStream printStream = new PrintStream(topicFile);
+                    printStream.print("system/+\nserver/+\ndefault/+\n");
+
+                }
+                EventRW.Write("Subscribe pre-added topics from file......");
+                sleep(5000);
+                LinedFile lf = new LinedFile(topicFile);
+                for (int i = 0; i < lf.getLineCount(); i++) {
+                    mqttClient.subscribeTopic(lf.getLineOn(i));
+                }
+            } catch (Exception e) {
+                EventRW.WriteAsRichText(false, "Launcher", "Could not startupsubscribe config file. This will be ignored.");
+            }
+            //enable terminal
+            Terminal terminal = new Terminal(mqttClient);
         }
     }
 }
