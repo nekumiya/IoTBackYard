@@ -1,5 +1,0 @@
-#server config file
-server-address=tcp://mqtt.visualdust.com
-login-id=debug
-login-password=
-mqtt-keep-alive-interval=20

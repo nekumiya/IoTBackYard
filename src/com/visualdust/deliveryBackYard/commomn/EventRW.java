@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class EventRW {
-    public static File logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
+    public static File logoutfile = new File("Log_" + LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + Resource.VERSION + ".log");
     public static OutputStream logstream;
     public static LocalDateTime dateTime = LocalDateTime.now();
 
@@ -67,7 +67,7 @@ public class EventRW {
             int runtime = Integer.valueOf(str);
             FileOutputStream runtimeOutStream = new FileOutputStream(runtimeFile, false);
             runtimeOutStream.write(String.valueOf(++runtime).getBytes());
-            logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
+            logoutfile = new File("Log_" + LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + Resource.VERSION + ".log");
             EventRW.Write("----------" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
                     ">ServerRuntimeClockBump: " + runtime +
                     "hours after server launch----------");
