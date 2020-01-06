@@ -45,23 +45,23 @@ class MqttServerSideTerminal : ITerminal<String> {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
                 1 + blankSize -> mqttClient.connect(true)
-                2 + blankSize -> {
-                    mqttClient.`server-address` = argList[1]
-                    mqttClient.connect()
-                }
-                3 + blankSize -> {
-                    mqttClient.`server-address` = argList[1]
-                    var option = MqttConnectOptions()
-                    option.userName = argList[2]
-                    mqttClient.connect(option)
-                }
-                4 + blankSize -> {
-                    mqttClient.`server-address` = argList[1]
-                    var option = MqttConnectOptions()
-                    option.userName = argList[2]
-                    option.password = argList[3].toCharArray()
-                    mqttClient.connect(option)
-                }
+//                2 + blankSize -> {
+//                    mqttClient.`server-address` = argList[1]
+//                    mqttClient.connect()
+//                }
+//                3 + blankSize -> {
+//                    mqttClient.`server-address` = argList[1]
+//                    var option = MqttConnectOptions()
+//                    option.userName = argList[2]
+//                    mqttClient.connect(option)
+//                }
+//                4 + blankSize -> {
+//                    mqttClient.`server-address` = argList[1]
+//                    var option = MqttConnectOptions()
+//                    option.userName = argList[2]
+//                    option.password = argList[3].toCharArray()
+//                    mqttClient.connect(option)
+//                }
                 else -> print("Syntax error.\n" +
                         "Usage: connect [address] [username] [password]\n" +
                         "Keep stuffs in \"[]\" empty to use default connect option\n>>>")
@@ -114,10 +114,10 @@ class MqttServerSideTerminal : ITerminal<String> {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
                 2 + blankSize -> {
-                    mqttClient.publish(argList[1], argList[0])
+                    mqttClient.publish(argList[1], argList[2])
                 }
                 else -> print("Syntax error.\n" +
-                        "Usage: publish [topic] [message]\n>>>")
+                        "Usage: publish [message] [topic]\n>>>")
             }
         }))
 
