@@ -1,5 +1,6 @@
 package com.visualdust.deliveryBackYard.mqttclient
 
+import com.visualdust.deliveryBackYard.commomn.EventRW
 import com.visualdust.deliveryBackYard.commomn.Toolbox
 import com.visualdust.deliveryBackYard.terminal.Command
 import com.visualdust.deliveryBackYard.terminal.ITerminal
@@ -133,6 +134,18 @@ class MqttServerSideTerminal : ITerminal<String> {
             }
         }))
 
+        //command "exit"
+        this.buildInCommand(Command("exit", Consumer {
+            var argList = Toolbox.Split(it, " ", 0)
+            when (argList.size) {
+                0 + blankSize -> {
+                    EventRW.Write("Server exiting....")
+                    System.exit(0)
+                }
+                else -> print("Syntax error.\n" +
+                        "Usage: exit\n>>>")
+            }
+        }))
     }
 
     override fun buildInCommand(command: Command<String>) {

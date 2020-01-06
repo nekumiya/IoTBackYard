@@ -53,8 +53,9 @@ public class EventRW {
         System.out.print(string + "\n>>>");
     }
 
-    public static String getRuntimeLog() {
-        int runtime = 0;
+    public static int runtime = 0;
+
+    public static void GainRunTime() {
         try {
             File runtimeFile = new File(Resource.VERSION + "_runtime");
             if (!runtimeFile.exists()) {
@@ -73,8 +74,11 @@ public class EventRW {
         } catch (Exception e) {
             EventRW.Write(e);
         }
+    }
+
+    public static String getRuntimeLog() {
         return "[Runtime]>" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
                 ">ServerRuntimeClockBump: " + runtime +
-                "hours after server launch";
+                " hour(s) after server launch";
     }
 }

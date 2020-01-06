@@ -129,6 +129,7 @@ public class Launcher {
         public void run() {
             while (true) {
                 try {
+                    EventRW.GainRunTime();
                     EventRW.Write(mqttClient.readStatus(false));
                     sleep(60000 * 60);
                 } catch (Exception e) {
