@@ -14,8 +14,8 @@ import java.util.function.Consumer
  * last update on 20191229
  */
 class ObjectiveMqttCallBack : MqttCallback {
-    private var onReceivingResolvers = Vector<Consumer<MqttMessageWithTopic>>()
-    private var onConnectionLostResolver: Consumer<Throwable>? = null
+    public var onReceivingResolvers = Vector<Consumer<MqttMessageWithTopic>>()
+    public var onConnectionLostResolver: Consumer<Throwable>? = null
         set(value) {
             field = value
         }

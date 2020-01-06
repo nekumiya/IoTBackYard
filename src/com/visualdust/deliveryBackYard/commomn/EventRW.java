@@ -53,38 +53,26 @@ public class EventRW {
         System.out.println(string + "\n>>>");
     }
 
-    public static void CoverWith(String string) {
-        try {
-            logstream = new FileOutputStream(logoutfile, false);
-            logstream.write((string).getBytes());
-        } catch (Exception e1) {
-            System.out.println(e1.toString());
-            e1.printStackTrace();
-        }
-    }
-
     public static void updateTime() {
-        if (true) {
-            dateTime = LocalDateTime.now();
-
-            try {
-                File readerFile = new File(Resource.VERSION + "_Runtime");
-                logoutfile = new File(Resource.VERSION + "_Runtime");
-                if (!readerFile.exists()) {
-                    WriteStrOnly("0");
-                }
-                InputStream inputStream = new FileInputStream(readerFile);
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-                String str = bufferedReader.readLine();
-                int runtime = Integer.valueOf(str);
-                CoverWith(String.valueOf(++runtime));
-                logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
-                EventRW.Write("----------" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
-                        ">ServerRuntimeClockBump: " + runtime +
-                        "hours after server launch----------");
-            } catch (Exception e) {
-                EventRW.Write(e);
+        try {
+            File runtimeFile = new File(Resource.VERSION + "_runtime");
+            if (!runtimeFile.exists()) {
+                PrintStream printStream = new PrintStream(runtimeFile);
+                printStream.print("0");
             }
+            InputStream runtimeInStream = new FileInputStream(runtimeFile);
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(runtimeInStream, Charset.forName("UTF-8")));
+            String str = bufferedReader.readLine();
+            int runtime = Integer.valueOf(str);
+            FileOutputStream runtimeOutStream = new FileOutputStream(runtimeFile, false);
+            runtimeOutStream.write(String.valueOf(++runtime).getBytes());
+            logoutfile = new File(LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + ".md");
+            EventRW.Write("----------" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
+                    ">ServerRuntimeClockBump: " + runtime +
+                    "hours after server launch----------");
+        } catch (Exception e) {
+            EventRW.Write(e);
         }
     }
 }

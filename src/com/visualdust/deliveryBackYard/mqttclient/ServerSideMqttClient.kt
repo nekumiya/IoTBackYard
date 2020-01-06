@@ -1,13 +1,16 @@
 package com.visualdust.deliveryBackYard.mqttclient
 
 import com.visualdust.deliveryBackYard.commomn.EventRW
+import com.visualdust.deliveryBackYard.commomn.LinedFile
 import org.eclipse.paho.client.mqttv3.MqttClient
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttMessage
 import org.eclipse.paho.client.mqttv3.MqttTopic
 import org.springframework.stereotype.Component
+import java.io.File
 import java.lang.Exception
 import java.util.function.Consumer
+import kotlin.collections.HashMap
 
 /**
  * @author VisualDust
@@ -18,25 +21,13 @@ import java.util.function.Consumer
 @Component
 class ServerSideMqttClient {
 
-    companion object {
-        /**
-         * variables here are global and will be used as default connection configuration
-         */
-        @JvmField
-        var serverAddr = "tcp://mqtt.visualdust.com"
-        @JvmField
-        var serverIdAsClient = "server"
-    }
-
-    private var initialSubscribedTopics: List<String> = listOf(
-            //Here you can put all the initial-subscribe-needed topics here
-            "admin", "control", "global", "system"
-    )
+    private var `server-address` = ""
+    var `login-id` = ""
 
     //Init a mqtt client to oversee messages
     lateinit var mqttClient: MqttClient
 
-    //An in-queue publisher
+    //An publisher
     var publisher = Publisher(this)
 
     //Can be changed after constructed
@@ -46,18 +37,39 @@ class ServerSideMqttClient {
         }
 
     //password is readonly out of secure consideration
-    protected var password: String? = null
+    protected var `login-password`: String? = null
         set(value) {
             field = value
         }
 
     var callBackResolver = ObjectiveMqttCallBack()
 
+    var `mqtt-keep-alive-interval` = 20
+
     /**
      * <p>Initialize a server-side mqtt client using default configuration</p>
      */
-    public constructor() {
-
+    /**
+     * server-address=tcp://mqtt.visualdust.com
+     * login-id=server
+     * login-password=
+     * mqtt-keep-alive-interval=20
+     */
+    public constructor(configure: ServerSideMqttClientConfigure) {
+        try {
+            var configMap = configure.configHashMap
+            if (configMap.containsKey("server-address"))
+                `server-address` = configMap.getValue("server-address")
+            if (configMap.containsKey("login-id"))
+                `login-id` = configMap.getValue("login-id")
+            if (configMap.containsKey("login-password"))
+                `login-password` = configMap.getValue("login-password")
+            if (configMap.containsKey("mqtt-keep-alive-interval"))
+                `mqtt-keep-alive-interval` = Integer.valueOf(configMap.getValue("mqtt-keep-alive-interval"))
+        } catch (e: Exception) {
+            EventRW.WriteAsRichText(false, this.toString(), "Exception occurred when analyze configuration : $e")
+        }
+        initialize()
     }
 
     /**
@@ -67,16 +79,14 @@ class ServerSideMqttClient {
      */
     public constructor(serverAddr: String, serverIdAsClient: String) {
         mqttClient = MqttClient(serverAddr, serverIdAsClient)
+        initialize()
     }
 
-    init {
-        mqttClient = MqttClient(Companion.serverAddr, Companion.serverIdAsClient)
-        //Initialize user name and password
-        mqttConnectOptions.userName = serverIdAsClient
-        mqttConnectOptions.password = password?.toCharArray() ?: charArrayOf()
-        mqttConnectOptions.keepAliveInterval = 20
-        //Set bump interval
-        mqttConnectOptions.keepAliveInterval = 10
+    fun initialize() {
+        mqttClient = MqttClient(`server-address`, `login-id`)
+        mqttConnectOptions.userName = `login-id`
+        mqttConnectOptions.password = `login-password`?.toCharArray() ?: charArrayOf()
+        mqttConnectOptions.keepAliveInterval = `mqtt-keep-alive-interval`
         mqttConnectOptions.isCleanSession = true
         mqttClient.setCallback(callBackResolver)
     }
@@ -88,13 +98,11 @@ class ServerSideMqttClient {
     public fun connect(autoReconnect: Boolean = false) {
         mqttConnectOptions.isAutomaticReconnect = autoReconnect
         try {
+            EventRW.Write("Trying to connect to : $`server-address`......")
             mqttClient.connect(mqttConnectOptions)
             EventRW.WriteAsRichText(true,
                     this.toString(),
                     "Connected to ${mqttClient.currentServerURI} with the identified uid ${mqttConnectOptions.userName}")
-            //Subscribe topics
-            for (topic in initialSubscribedTopics)
-                mqttClient.subscribe(topic)
         } catch (e: Exception) {
             EventRW.WriteAsRichText(false,
                     this.toString(),
@@ -104,6 +112,7 @@ class ServerSideMqttClient {
 
     public fun disconnect() {
         try {
+            EventRW.Write("Trying to disconnect from : ${mqttClient.currentServerURI}......")
             mqttClient.disconnect()
             EventRW.WriteAsRichText(true,
                     this.toString(),
@@ -113,6 +122,32 @@ class ServerSideMqttClient {
                     this.toString(),
                     "Failed when disconnecting from ${mqttClient.currentServerURI}, client threw $e")
         }
+    }
+
+    public fun reconnect() {
+        try {
+            EventRW.Write("Trying to reconnect to : ${mqttClient.currentServerURI}......")
+            mqttClient.reconnect()
+            EventRW.WriteAsRichText(true,
+                    this.toString(),
+                    "Reconnected to ${mqttClient.currentServerURI}")
+        } catch (e: Exception) {
+            EventRW.WriteAsRichText(false,
+                    this.toString(),
+                    "Failed when reconnect to ${mqttClient.currentServerURI}, client threw $e")
+        }
+    }
+
+    public fun readStatus(simplify: Boolean): String {
+        var status: String = "  ---<Status of $this>---\n" +
+                "   [Client]\n" +
+                "       <ClientID>              ${mqttClient.clientId}\n" +
+                "       <ResolverCount>         ${callBackResolver.onReceivingResolvers.size}\n" +
+                "   [ConnectionStatus]\n" +
+                "       <TargetServerAddress>   $`server-address`\n" +
+                "       <CurrentServerAddress>  ${mqttClient.currentServerURI}\n" +
+                "       <IsConnected>           ${mqttClient.isConnected}\n"
+        return status
     }
 
     //topic subscribing methods
@@ -144,4 +179,29 @@ class ServerSideMqttClient {
         publisher.publish(mqttMessageWithTopic)
         EventRW.Write("$this published \"$mqttMessageWithTopic\"")
     }
+}
+
+class ServerSideMqttClientConfigure {
+    var configHashMap: HashMap<String, String>
+
+    constructor(configFile: File) {
+        configHashMap = HashMap()
+        var lf = LinedFile(File("config"))
+        for (i in 0 until lf.lineCount - 1) {
+            var item = lf.getLineOn(i.toInt())
+            if (item.startsWith("#"))
+                continue
+            if (item.contains("=") && item.split("=").size == 2) {
+                var cfg = item.split("=")
+                configHashMap.put(cfg[0], cfg[1])
+            } else {
+                EventRW.WriteAsRichText(false, this.toString(), "Exception occurred when initializing config file at line[$i]<$item> : format error")
+            }
+        }
+    }
+
+    constructor(config: HashMap<String, String>) {
+        this.configHashMap = config
+    }
+
 }
