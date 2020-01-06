@@ -51,7 +51,7 @@ public class Launcher {
          * For test only
          */
         mqttClient.addResolver(mqttMessageWithTopic -> {
-            System.out.println("<MessageReceived>: " + LocalDateTime.now() + " > " + mqttMessageWithTopic.toString());
+            EventRW.Write("<MessageReceived>: " + LocalDateTime.now() + " > " + mqttMessageWithTopic.toString());
         });
         mqttClient.addResolver(mqttMessageWithTopic -> {
             if (mqttMessageWithTopic.getTopic().toString().endsWith("test")) {
