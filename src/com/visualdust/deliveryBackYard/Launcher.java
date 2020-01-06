@@ -5,7 +5,7 @@ import com.visualdust.deliveryBackYard.commomn.LinedFile;
 import com.visualdust.deliveryBackYard.delivery.PackageInfo;
 import com.visualdust.deliveryBackYard.mqttclient.ServerSideMqttClient;
 import com.visualdust.deliveryBackYard.mqttclient.ServerSideMqttClientConfigure;
-import com.visualdust.deliveryBackYard.mqttclient.Terminal;
+import com.visualdust.deliveryBackYard.mqttclient.MqttServerSideTerminal;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -124,7 +124,8 @@ public class Launcher {
                 EventRW.WriteAsRichText(false, "Launcher", "Could not startupsubscribe config file. This will be ignored.");
             }
             //enable terminal
-            Terminal terminal = new Terminal(mqttClient);
+            MqttServerSideTerminal mqttServerSideTerminal = new MqttServerSideTerminal(mqttClient);
+            mqttServerSideTerminal.start();
         }
     }
 }

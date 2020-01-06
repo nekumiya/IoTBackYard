@@ -1,5 +1,0 @@
-#server config file
-server-address=tcp://mqtt.visualdust.com
-login-id=+BackYard_30c23914-c9d2-4d7d-99a4-f4df72d79f46+
-login-password=
-mqtt-keep-alive-interval=10

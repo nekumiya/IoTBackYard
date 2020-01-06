@@ -21,7 +21,7 @@ public class EventRW {
             System.out.println(e1.toString());
             e1.printStackTrace();
         }
-        System.out.println(e.toString() + "\n>>>");
+        System.out.print(e.toString() + "\n>>>");
         e.printStackTrace();
     }
 
@@ -33,7 +33,7 @@ public class EventRW {
             System.out.println(e1.toString());
             e1.printStackTrace();
         }
-        System.out.println(event + "\n>>>");
+        System.out.print(event + "\n>>>");
     }
 
     public static void WriteAsRichText(boolean succeed, String whoOccur, String extraMessage) {
@@ -50,7 +50,7 @@ public class EventRW {
             System.out.println(e1.toString());
             e1.printStackTrace();
         }
-        System.out.println(string + "\n>>>");
+        System.out.print(string + "\n>>>");
     }
 
     public static void updateTime() {

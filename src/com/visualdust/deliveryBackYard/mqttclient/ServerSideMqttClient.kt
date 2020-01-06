@@ -21,7 +21,7 @@ import kotlin.collections.HashMap
 @Component
 class ServerSideMqttClient {
 
-    private var `server-address` = ""
+    public var `server-address` = ""
     var `login-id` = ""
 
     //Init a mqtt client to oversee messages
@@ -97,6 +97,10 @@ class ServerSideMqttClient {
      */
     public fun connect(autoReconnect: Boolean = false) {
         mqttConnectOptions.isAutomaticReconnect = autoReconnect
+        this.connect(mqttConnectOptions)
+    }
+
+    public fun connect(options: MqttConnectOptions) {
         try {
             EventRW.Write("Trying to connect to : $`server-address`......")
             mqttClient.connect(mqttConnectOptions)
