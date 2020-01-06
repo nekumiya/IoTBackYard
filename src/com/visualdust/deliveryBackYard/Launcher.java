@@ -2,6 +2,7 @@ package com.visualdust.deliveryBackYard;
 
 import com.visualdust.deliveryBackYard.commomn.EventRW;
 import com.visualdust.deliveryBackYard.commomn.LinedFile;
+import com.visualdust.deliveryBackYard.commomn.Toolbox;
 import com.visualdust.deliveryBackYard.delivery.PackageInfo;
 import com.visualdust.deliveryBackYard.mqttclient.ServerSideMqttClient;
 import com.visualdust.deliveryBackYard.mqttclient.ServerSideMqttClientConfigure;
@@ -67,31 +68,8 @@ public class Launcher {
     }
 
 
-    /**
-     * Refresh runtime and status per hour
-     */
-    static class ClockThread extends Thread {
-        ServerSideMqttClient mqttClient;
-
-        public ClockThread(ServerSideMqttClient mqttClient) {
-            this.mqttClient = mqttClient;
-        }
-
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    EventRW.updateTime();
-                    EventRW.Write(mqttClient.readStatus(false));
-                    sleep(60000 * 60);
-                } catch (Exception e) {
-                    EventRW.Write(e);
-                }
-            }
-        }
-    }
-
     static class PostProcessingThread extends Thread {
+
         ServerSideMqttClient mqttClient;
 
         public PostProcessingThread(ServerSideMqttClient mqttClient) {
@@ -118,7 +96,14 @@ public class Launcher {
                 sleep(5000);
                 LinedFile lf = new LinedFile(topicFile);
                 for (int i = 0; i < lf.getLineCount(); i++) {
-                    mqttClient.subscribeTopic(lf.getLineOn(i));
+                    String line = lf.getLineOn(i);
+                    if (!line.startsWith("#")) {
+                        String[] splitedLf = Toolbox.Split(line, "->", 0);
+                        if (splitedLf.length == 1)
+                            mqttClient.subscribeTopic(line);
+                        else
+                            mqttClient.subscribeTopic(splitedLf[0], Integer.valueOf(splitedLf[1]));
+                    }
                 }
             } catch (Exception e) {
                 EventRW.WriteAsRichText(false, "Launcher", "Could not startupsubscribe config file. This will be ignored.");
@@ -126,6 +111,30 @@ public class Launcher {
             //enable terminal
             MqttServerSideTerminal mqttServerSideTerminal = new MqttServerSideTerminal(mqttClient);
             mqttServerSideTerminal.start();
+        }
+
+    }
+
+    /**
+     * Refresh runtime and status per hour
+     */
+    static class ClockThread extends Thread {
+        ServerSideMqttClient mqttClient;
+
+        public ClockThread(ServerSideMqttClient mqttClient) {
+            this.mqttClient = mqttClient;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    EventRW.Write(mqttClient.readStatus(false));
+                    sleep(60000 * 60);
+                } catch (Exception e) {
+                    EventRW.Write(e);
+                }
+            }
         }
     }
 }

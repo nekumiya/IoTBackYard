@@ -53,7 +53,8 @@ public class EventRW {
         System.out.print(string + "\n>>>");
     }
 
-    public static void updateTime() {
+    public static String getRuntimeLog() {
+        int runtime = 0;
         try {
             File runtimeFile = new File(Resource.VERSION + "_runtime");
             if (!runtimeFile.exists()) {
@@ -64,15 +65,16 @@ public class EventRW {
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(runtimeInStream, Charset.forName("UTF-8")));
             String str = bufferedReader.readLine();
-            int runtime = Integer.valueOf(str);
+            runtime = Integer.valueOf(str);
             FileOutputStream runtimeOutStream = new FileOutputStream(runtimeFile, false);
             runtimeOutStream.write(String.valueOf(++runtime).getBytes());
             logoutfile = new File("Log_" + LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + Resource.VERSION + ".log");
-            EventRW.Write("----------" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
-                    ">ServerRuntimeClockBump: " + runtime +
-                    "hours after server launch----------");
+
         } catch (Exception e) {
             EventRW.Write(e);
         }
+        return "[Runtime]>" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
+                ">ServerRuntimeClockBump: " + runtime +
+                "hours after server launch";
     }
 }

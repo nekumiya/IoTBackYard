@@ -143,7 +143,8 @@ class ServerSideMqttClient {
     }
 
     public fun readStatus(simplify: Boolean): String {
-        var status: String = "  ---<Status of $this>---\n" +
+        var status: String = EventRW.getRuntimeLog() + "\n" +
+                "---<Status of $this>---\n" +
                 "   [Client]\n" +
                 "       <ClientID>              ${mqttClient.clientId}\n" +
                 "       <ResolverCount>         ${callBackResolver.onReceivingResolvers.size}\n" +
@@ -158,17 +159,17 @@ class ServerSideMqttClient {
 
     public fun subscribeTopic(topic: String) {
         mqttClient.subscribe(topic, 1)
-        EventRW.Write("Subscribed topic \"$topic\" from $this")
+        EventRW.Write("Subscribed topic \"$topic\" by $this")
     }
 
     public fun subscribeTopic(topic: String, qos: Int) {
         mqttClient.subscribe(topic, qos)
-        EventRW.Write("Subscribed topic \"$topic\" from $this, qos=$qos")
+        EventRW.Write("Subscribed topic \"$topic\" by $this, qos=$qos")
     }
 
     public fun unsubscribeTopic(topic: String) {
         mqttClient.unsubscribe(topic)
-        EventRW.Write("Unsubscribed topic \"$topic\" from $this")
+        EventRW.Write("Unsubscribed topic \"$topic\" by $this")
     }
 
     //resolvers for message arrival
