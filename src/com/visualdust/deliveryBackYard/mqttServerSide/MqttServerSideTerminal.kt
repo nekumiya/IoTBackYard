@@ -94,7 +94,7 @@ class MqttServerSideTerminal : ITerminal<String> {
         this.buildInCommand(Command("mqtt-subscribe", Consumer {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
-                1 + blankSize -> mqttClient.subscribeTopic(argList[0])
+                1 + blankSize -> mqttClient.subscribeTopic(argList[1])
                 else -> print("Syntax error.\n" +
                         "Usage: mqtt-subscribe [topic]\n>>>")
             }

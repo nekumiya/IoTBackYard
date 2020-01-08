@@ -159,18 +159,30 @@ class ServerSideMqttClient {
     //topic subscribing methods
 
     public fun subscribeTopic(topic: String) {
-        mqttClient.subscribe(topic, 1)
-        EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : Subscribed topic \"$topic\" by $this")
+        try {
+            mqttClient.subscribe(topic, 1)
+            EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : Subscribed topic \"$topic\" by $this")
+        } catch (e: Exception) {
+            EventRW.WriteAsRichText(false, this.toString(), "Failed when subscribe topic\" $topic\". Client threw $e")
+        }
     }
 
     public fun subscribeTopic(topic: String, qos: Int) {
-        mqttClient.subscribe(topic, qos)
-        EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : Subscribed topic \"$topic\" by $this, qos=$qos")
+        try {
+            mqttClient.subscribe(topic, qos)
+            EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : Subscribed topic \"$topic\" by $this, qos=$qos")
+        } catch (e: Exception) {
+            EventRW.WriteAsRichText(false, this.toString(), "Failed when subscribe topic\" $topic\". Client threw $e")
+        }
     }
 
     public fun unsubscribeTopic(topic: String) {
-        mqttClient.unsubscribe(topic)
-        EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : Unsubscribed topic \"$topic\" by $this")
+        try {
+            mqttClient.unsubscribe(topic)
+            EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : Unsubscribed topic \"$topic\" by $this")
+        } catch (e: Exception) {
+            EventRW.WriteAsRichText(false, this.toString(), "Failed when unsubscribe topic\" $topic\". Client threw $e")
+        }
     }
 
     //resolvers for message arrival
@@ -182,8 +194,12 @@ class ServerSideMqttClient {
     public fun publish(message: String, topic: String) = publish(MqttMessageWithTopic(MqttMessage(message.toByteArray()), MqttTopic(topic, null)))
 
     public fun publish(mqttMessageWithTopic: MqttMessageWithTopic) {
-        publisher.publish(mqttMessageWithTopic)
-        EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : $this publish procedure for \"$mqttMessageWithTopic\" finished.")
+        try {
+            publisher.publish(mqttMessageWithTopic)
+            EventRW.Write("${Resource.MQTTSIDE_NAME}->Client : $this publish procedure for \"$mqttMessageWithTopic\" finished.")
+        } catch (e: Exception) {
+            EventRW.WriteAsRichText(false, this.toString(), "Failed when publish message \"$mqttMessageWithTopic\". Client threw $e")
+        }
     }
 }
 
@@ -192,7 +208,7 @@ class ServerSideMqttClientConfigure {
 
     constructor(configFile: File) {
         configHashMap = HashMap()
-        var lf = LinedFile(File("config"))
+        var lf = LinedFile(configFile)
         for (i in 0 until lf.lineCount - 1) {
             var item = lf.getLineOn(i.toInt())
             if (item.startsWith("#"))

@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class LauncherMQTTSide {
-    static LocalDateTime launchTimeStamp = LocalDateTime.now();
-
     public static void main(String[] args) {
         Launch();
     }
@@ -135,7 +133,7 @@ public class LauncherMQTTSide {
         public void run() {
             while (true) {
                 try {
-                    EventRW.GainRunTime("MQTT-SIDE");
+                    EventRW.GainRunTime("mqttside_");
                     EventRW.Write(mqttClient.readStatus(false));
                     sleep(60000 * 60);
                 } catch (Exception e) {
