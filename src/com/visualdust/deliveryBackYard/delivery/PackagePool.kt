@@ -30,7 +30,7 @@ class PackagePool {
             // Put it into the suid-pkgs searching pool
             if (it.extension.checkIfThereIs(`senderUID-key`)) {// it has a sender
                 // After the 'if' checque above, suid must be null-safe
-                var suid = it.extension.getValueOf(`senderUID-key`)!!
+                val suid = it.extension.getValueOf(`senderUID-key`)!!
                 if (!`suid-pkgs-Dictionary`.containsKey(suid))
                 // Create a pkg list for suid if there isn't any
                     `suid-pkgs-Dictionary`.put(suid, mutableListOf())
@@ -40,7 +40,7 @@ class PackagePool {
             // Put it into the ruid-pkgs searching pool
             if (it.extension.checkIfThereIs(`receiverUID-key`)) {// it has a receiver
                 // After the 'if' checque above, suid must be null-safe
-                var ruid = it.extension.getValueOf(`receiverUID-key`)!!
+                val ruid = it.extension.getValueOf(`receiverUID-key`)!!
                 if (!`ruid-pkgs-Dictionary`.containsKey(ruid))
                 // Create a pkg list for ruid if there isn't any
                     `ruid-pkgs-Dictionary`.put(ruid, mutableListOf())

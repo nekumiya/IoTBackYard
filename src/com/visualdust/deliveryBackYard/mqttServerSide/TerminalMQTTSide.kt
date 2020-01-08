@@ -1,7 +1,5 @@
 package com.visualdust.deliveryBackYard.mqttServerSide
 
-import com.visualdust.deliveryBackYard.common.EventRW
-import com.visualdust.deliveryBackYard.common.Resource
 import com.visualdust.deliveryBackYard.common.Toolbox
 import com.visualdust.deliveryBackYard.terminal.Command
 import com.visualdust.deliveryBackYard.terminal.ITerminal
@@ -9,7 +7,7 @@ import java.util.*
 import java.util.function.Consumer
 import kotlin.collections.HashMap
 
-class MqttServerSideTerminal : ITerminal<String> {
+class TerminalMQTTSide : ITerminal<String> {
 
     var mqttClient: ServerSideMqttClient
     override var cmdMap = HashMap<String, Command<String>>()
@@ -166,13 +164,13 @@ class MqttServerSideTerminal : ITerminal<String> {
         ScannerThread(this).start()
     }
 
-    internal class ScannerThread(var mqttServerSideTerminal: MqttServerSideTerminal) : Thread() {
+    internal class ScannerThread(var terminalMQTTSide: TerminalMQTTSide) : Thread() {
         var scanner = Scanner(System.`in`)
 
         override fun run() {
             while (true) {
                 var userInput = scanner.nextLine()
-                mqttServerSideTerminal.run(userInput)
+                terminalMQTTSide.run(userInput)
             }
         }
     }

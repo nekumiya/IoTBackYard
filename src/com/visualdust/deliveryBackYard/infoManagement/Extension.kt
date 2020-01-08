@@ -12,7 +12,7 @@ class Extension<K, T> : ITagManage<K, T> {
     var map: MutableMap<K, T> = HashMap<K, T>()
 
     /**
-     *<p>Will be transformed into addTag(key: String, value: String):Unit
+     *<p>Will be transformed into addTag(key: K, value: T):Unit
      *</p>
      * @see addTag
      */

@@ -56,7 +56,6 @@ public class EventRW {
     }
 
     public static Map<String, Integer> runtimes = new HashMap<>();
-    public static int runtime = 0;
 
     public static void GainRunTime(String sideName) throws FileNotFoundException {
         File runtimeFile = new File(sideName + "" + Resource.VERSION + "_runtime");
@@ -70,9 +69,9 @@ public class EventRW {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(runtimeInStream, Charset.forName("UTF-8")));
             String str = bufferedReader.readLine();
             runtimes.putIfAbsent(sideName, Integer.valueOf(str));
-            runtime = runtimes.get(sideName);
             FileOutputStream runtimeOutStream = new FileOutputStream(runtimeFile, false);
-            runtimeOutStream.write(String.valueOf(++runtime).getBytes());
+            runtimes.replace(sideName, runtimes.get(sideName) + 1);
+            runtimeOutStream.write(String.valueOf(runtimes.get(sideName)).getBytes());
             logoutfile = new File("Log_" + LocalDate.now().toString() + "_" + Resource.SOFTWARE_NAME + Resource.VERSION + ".log");
 
         } catch (Exception e) {
@@ -82,9 +81,10 @@ public class EventRW {
         }
     }
 
-    public static String getRuntimeLog() {
+    public static String getRuntimeLog(String sideName) {
+        runtimes.putIfAbsent(sideName, 0);
         return "[Runtime]>" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
-                ">ServerRuntimeClockBump: " + runtime +
+                ">ServerRuntimeClockBump: " + runtimes.get(sideName) +
                 " hour(s) after server launched";
     }
 }

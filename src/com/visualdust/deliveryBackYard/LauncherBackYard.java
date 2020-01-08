@@ -1,15 +1,15 @@
 package com.visualdust.deliveryBackYard;
 
 import com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide;
-import com.visualdust.deliveryBackYard.mqttServerSide.MqttServerSideTerminal;
+import com.visualdust.deliveryBackYard.mqttServerSide.TerminalMQTTSide;
 
-public class BackYardLauncher {
+public class LauncherBackYard {
     public static void main(String[] args) {
         /**
          * Launching MqttSide
          */
         LauncherMQTTSide.Launch();
-        MqttServerSideTerminal mqttTerminal = LauncherMQTTSide.mqttServerSideTerminal;
+        TerminalMQTTSide mqttTerminal = LauncherMQTTSide.terminalMQTTSide;
 
         /**
          * Launching SocketSide

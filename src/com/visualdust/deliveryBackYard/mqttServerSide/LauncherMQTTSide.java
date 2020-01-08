@@ -108,16 +108,16 @@ public class LauncherMQTTSide {
                 EventRW.WriteAsRichText(false, "@LauncherMQTTSide", "Could not mqttside.startupsubscribe config file. This will be ignored.");
             }
             //enable terminal?
-            mqttServerSideTerminal = new MqttServerSideTerminal(mqttClient);
+            terminalMQTTSide = new TerminalMQTTSide(mqttClient);
             //todo cancle the launcher auto start after the main launcher is added
-            mqttServerSideTerminal.start();
+            terminalMQTTSide.start();
         }
     }
 
     /**
      * Declare the terminal
      */
-    public static MqttServerSideTerminal mqttServerSideTerminal = null;
+    public static TerminalMQTTSide terminalMQTTSide = null;
 
     /**
      * Refresh runtime and status per hour

@@ -144,7 +144,7 @@ class ServerSideMqttClient {
     }
 
     public fun readStatus(simplify: Boolean): String {
-        var status: String = EventRW.getRuntimeLog() + "\n" +
+        var status: String = EventRW.getRuntimeLog("mqttside_") + "\n" +
                 "   ---<---Status of $this--->---\n" +
                 "   [Client]\n" +
                 "       <ClientID>              ${mqttClient.clientId}\n" +

@@ -1,4 +1,4 @@
-package com.visualdust.deliveryBackYard.infoManagement.user
+package com.visualdust.deliveryBackYard.delivery
 
 import com.visualdust.deliveryBackYard.infoManagement.Extension
 import java.util.*

@@ -4,7 +4,6 @@ import java.net.http.WebSocket
 
 class SocketPool {
     companion object {
-        @JvmField
-        var socketDictionary = HashMap<String, WebSocket>()
+        private var socketDictionary = HashMap<String, WebSocket>()
     }
 }
