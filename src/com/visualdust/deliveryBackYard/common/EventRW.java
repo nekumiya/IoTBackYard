@@ -83,7 +83,7 @@ public class EventRW {
 
     public static String getRuntimeLog(String sideName) {
         runtimes.putIfAbsent(sideName, 0);
-        return "[Runtime]>" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
+        return "[" + sideName + ">Runtime]>" + LocalDateTime.now() + ">Version=" + Resource.VERSION +
                 ">ServerRuntimeClockBump: " + runtimes.get(sideName) +
                 " hour(s) after server launched";
     }

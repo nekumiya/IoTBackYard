@@ -4,8 +4,11 @@ import com.visualdust.deliveryBackYard.common.EventRW;
 import com.visualdust.deliveryBackYard.common.Resource;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class LauncherSocketSide {
@@ -27,18 +30,60 @@ public class LauncherSocketSide {
                 EventRW.Write("Trying to create " + Resource.SOCKETSIDE_CONFIGFILE_NAME + "......");
                 File configFile = new File(Resource.SOCKETSIDE_CONFIGFILE_NAME);
                 PrintStream printStream = new PrintStream(configFile);
-//                printStream.print("#mqttside config file\n" +
-//                        "server-address=tcp://mqtt.visualdust.com\n" +
-//                        "login-id=+" + "BackYard_" + UUID.randomUUID() + "+\n" +
-//                        "login-password=\n" +
-//                        "mqtt-keep-alive-interval=10");
+                printStream.print("#" + Resource.SOCKETSIDE_NAME + " config file\n" +
+                        "socket-port=22519");
             } catch (Exception e) {
-                EventRW.WriteAsRichText(false, Resource.SOCKETSIDE_NAME + "Launcher", "Could not create " + Resource.SOCKETSIDE_CONFIGFILE_NAME + ". Server will exit.");
-                System.exit(1);
+                EventRW.WriteAsRichText(false, Resource.SOCKETSIDE_NAME + "Launcher", "Exception occurred when creating " + Resource.SOCKETSIDE_CONFIGFILE_NAME + " : " + e.toString() + ". Server-socket-side will not be created.");
+                return;
             }
-            /**
-             * Initialize a socket server using the config file
-             */
+        }
+        ServerSideSocketConfigure configure = new ServerSideSocketConfigure(new File(Resource.SOCKETSIDE_CONFIGFILE_NAME));
+
+        /**
+         * Initialize a socket server using the config file
+         */
+        HashMap<String, String> configMap = configure.getConfigHashMap();
+        int socketPort = 22519;
+        if (configMap.containsKey("socket-port"))
+            try {
+                socketPort = Integer.valueOf(configMap.get("socket-port"));
+            } catch (Exception e) {
+                EventRW.WriteAsRichText(false, Resource.SOCKETSIDE_NAME + "Launcher", "An exception occurred when analyze the config file : " + e.toString());
+            }
+        try {
+            serverSocket = new ServerSocket(socketPort);
+        } catch (Exception e) {
+            EventRW.WriteAsRichText(false, Resource.SOCKETSIDE_NAME + "Launcher", "Exception occurred when creating server socket on port : " + socketPort + ". Socket constructor threw " + e.toString() + ". The socket side will not be created.");
+            return;
+        }
+
+        /**
+         * Start the server socket overseeing thread and the terminal
+         */
+        new SocketServerThread(serverSocket).start();
+        //todo finish the terminal and add it here
+    }
+
+    static class SocketServerThread extends Thread {
+        ServerSocket serverSocket;
+
+        SocketServerThread(ServerSocket serverSocket) {
+            this.serverSocket = serverSocket;
+        }
+
+        @Override
+        public void run() {
+            EventRW.WriteAsRichText(true, this.toString(), "Socket on " + serverSocket.getLocalPort() + "Started to oversee.");
+            while (true) {
+                try {
+                    Socket socket = serverSocket.accept();
+                    EventRW.Write(Resource.SOCKETSIDE_NAME + " : Connection accepted between " + serverSocket + " and " + socket.getRemoteSocketAddress());
+                    SocketAttendant socketAttendant = new SocketAttendant(socket);
+                    socketAttendant.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

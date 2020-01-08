@@ -29,22 +29,22 @@ public class LauncherMQTTSide {
                 EventRW.Write("Trying to create " + Resource.MQTTSIDE_CONFIGFILE_NAME + "......");
                 File configFile = new File(Resource.MQTTSIDE_CONFIGFILE_NAME);
                 PrintStream printStream = new PrintStream(configFile);
-                printStream.print("#mqttside config file\n" +
+                printStream.print("#" + Resource.MQTTSIDE_NAME + "config file\n" +
                         "server-address=tcp://mqtt.visualdust.com\n" +
                         "login-id=+" + "BackYard_" + UUID.randomUUID() + "+\n" +
                         "login-password=\n" +
                         "mqtt-keep-alive-interval=10");
             } catch (Exception e) {
-                EventRW.WriteAsRichText(false, Resource.MQTTSIDE_NAME + "Launcher", "Could not create " + Resource.MQTTSIDE_CONFIGFILE_NAME + ". Server will exit.");
-                System.exit(1);
+                EventRW.WriteAsRichText(false, Resource.MQTTSIDE_NAME + "Launcher", "Exception occurred when creating " + Resource.MQTTSIDE_CONFIGFILE_NAME + " : " + e.toString() + ". The server-mqtt-side will not be created.");
+                return;
             }
         }
         ServerSideMqttClientConfigure configure = new ServerSideMqttClientConfigure(new File(Resource.MQTTSIDE_CONFIGFILE_NAME));
-        ServerSideMqttClient mqttClient = new ServerSideMqttClient(configure);
 
         /**
          * Creating mqtt client
          */
+        ServerSideMqttClient mqttClient = new ServerSideMqttClient(configure);
         mqttClient.connect(true);
         (new ClockThread(mqttClient)).start();
 

@@ -4,9 +4,9 @@ import java.net.http.WebSocket
 
 class SocketPool {
     companion object {
-        private var `uid-skt-Dictionary` = HashMap<String, WebSocket>()
+        private var `uid-sktat-Dictionary` = HashMap<String, SocketAttendant>()
 
-        fun drop(){
+        fun drop() {
 
         }
     }

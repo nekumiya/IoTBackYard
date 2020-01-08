@@ -57,19 +57,15 @@ class ServerSideMqttClient {
      * mqtt-keep-alive-interval=20
      */
     public constructor(configure: ServerSideMqttClientConfigure) {
-        try {
-            var configMap = configure.configHashMap
-            if (configMap.containsKey("server-address"))
-                `server-address` = configMap.getValue("server-address")
-            if (configMap.containsKey("login-id"))
-                `login-id` = configMap.getValue("login-id")
-            if (configMap.containsKey("login-password"))
-                `login-password` = configMap.getValue("login-password")
-            if (configMap.containsKey("mqtt-keep-alive-interval"))
-                `mqtt-keep-alive-interval` = Integer.valueOf(configMap.getValue("mqtt-keep-alive-interval"))
-        } catch (e: Exception) {
-            EventRW.WriteAsRichText(false, this.toString(), "Exception occurred when analyze configuration : $e")
-        }
+        var configMap = configure.configHashMap
+        if (configMap.containsKey("server-address"))
+            `server-address` = configMap.getValue("server-address")
+        if (configMap.containsKey("login-id"))
+            `login-id` = configMap.getValue("login-id")
+        if (configMap.containsKey("login-password"))
+            `login-password` = configMap.getValue("login-password")
+        if (configMap.containsKey("mqtt-keep-alive-interval"))
+            `mqtt-keep-alive-interval` = Integer.valueOf(configMap.getValue("mqtt-keep-alive-interval"))
         initialize()
     }
 
@@ -144,7 +140,7 @@ class ServerSideMqttClient {
     }
 
     public fun readStatus(simplify: Boolean): String {
-        var status: String = EventRW.getRuntimeLog("mqttside_") + "\n" +
+        var status: String = EventRW.getRuntimeLog(Resource.MQTTSIDE_NAME + "_") + "\n" +
                 "   ---<---Status of $this--->---\n" +
                 "   [Client]\n" +
                 "       <ClientID>              ${mqttClient.clientId}\n" +
@@ -203,27 +199,3 @@ class ServerSideMqttClient {
     }
 }
 
-class ServerSideMqttClientConfigure {
-    var configHashMap: HashMap<String, String>
-
-    constructor(configFile: File) {
-        configHashMap = HashMap()
-        var lf = LinedFile(configFile)
-        for (i in 0 until lf.lineCount - 1) {
-            var item = lf.getLineOn(i.toInt())
-            if (item.startsWith("#"))
-                continue
-            if (item.contains("=") && item.split("=").size == 2) {
-                var cfg = item.split("=")
-                configHashMap.put(cfg[0], cfg[1])
-            } else {
-                EventRW.WriteAsRichText(false, this.toString(), "Exception occurred when initializing config file at line[$i]<$item> : format error")
-            }
-        }
-    }
-
-    constructor(config: HashMap<String, String>) {
-        this.configHashMap = config
-    }
-
-}
