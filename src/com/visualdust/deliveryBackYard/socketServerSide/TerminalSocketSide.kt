@@ -1,5 +1,6 @@
 package com.visualdust.deliveryBackYard.socketServerSide
 
+import com.visualdust.deliveryBackYard.common.Resource
 import com.visualdust.deliveryBackYard.common.Toolbox
 import com.visualdust.deliveryBackYard.mqttServerSide.TerminalMQTTSide
 import com.visualdust.deliveryBackYard.terminal.Command
@@ -8,8 +9,8 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class TerminalSocketSide : ITerminal<String> {
-    override var cmdMap: HashMap<String, Command<String>>
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+    override var cmdMap: HashMap<String, Command<String>> = HashMap()
+        get() = field
         set(value) {}
 
     private var blankSize = 1
@@ -32,7 +33,7 @@ class TerminalSocketSide : ITerminal<String> {
         if (cmdMap.containsKey(key)) {
             cmdMap.getValue(key).resolve(command.substring(key.length))
         } else {
-            print("Command not found. Why not ask for \"socket-help\" ?\n>>>")
+            print("Command not found. Why not ask for \"socket-help\" ?\n" + Resource.COMMAND_PROMPT)
         }
     }
 

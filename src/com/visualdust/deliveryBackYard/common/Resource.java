@@ -8,6 +8,7 @@ public class Resource {
     public static String VERSION = "0.2.0.1";
     public static String AUTHOR_NAME = "VisualDust";
     public static String AUTHOR_EMAIL = "VisualDust@outlook.com";
+    public static String COMMAND_PROMPT = ">>>";
 
     /**
      * Mqtt server side

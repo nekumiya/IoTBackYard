@@ -61,8 +61,12 @@ public class LauncherSocketSide {
          * Start the server socket overseeing thread and the terminal
          */
         new SocketServerThread(serverSocket).start();
-        //todo finish the terminal and add it here
     }
+
+    /**
+     * Declare the terminal
+     */
+    public static TerminalSocketSide terminalSocketSide = new TerminalSocketSide();
 
     static class SocketServerThread extends Thread {
         ServerSocket serverSocket;

@@ -2,6 +2,7 @@ package com.visualdust.deliveryBackYard.delivery
 
 import com.visualdust.deliveryBackYard.infoManagement.Extension
 import com.visualdust.deliveryBackYard.common.EventRW
+import com.visualdust.deliveryBackYard.common.Toolbox
 
 /**
  * @author VisualDust
@@ -20,14 +21,14 @@ class PackageInfo {
      * <split> split <id> split <name> split <tag-key-01> split <tag-value-01> split <tag-key-02> split <tag-value-02>....
      */
     constructor(mqttMessage: String) {
-        var messageSplit = mqttMessage[0]
-        var items = mqttMessage.split(messageSplit)
-        if (items.size < 4 || items.size % 2 != 0) {
-            EventRW.WriteAsRichText(false, this.toString(), "Could not use ${mqttMessage} to initialize, format not match. Item[" + items.size + "]=" + items.toString())
+        var items = Toolbox.Split(mqttMessage, mqttMessage[0].toString(), 0)
+        if (items.size < 2 || items.size % 2 != 0) {
+//            EventRW.WriteAsRichText(false, this.toString(), "Could not use ${mqttMessage} to initialize, format not match. Item[" + items.size + "]=" + items.toString())
+            this.id = "null"
         } else {
-            id = items[2]
-            name = items[3]
-            var itemIndex = 4
+            id = items[0]
+            name = items[1]
+            var itemIndex = 2
             while (itemIndex <= items.lastIndex)
                 extension.addTag(items[itemIndex++], items[itemIndex++])
         }
@@ -39,4 +40,8 @@ class PackageInfo {
     }
 
     public fun getID(): String = this.id
+
+    override fun toString(): String {
+        return id + name + super.toString()
+    }
 }

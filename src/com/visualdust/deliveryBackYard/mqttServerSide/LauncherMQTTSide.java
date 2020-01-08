@@ -46,7 +46,6 @@ public class LauncherMQTTSide {
          */
         ServerSideMqttClient mqttClient = new ServerSideMqttClient(configure);
         mqttClient.connect(true);
-        (new ClockThread(mqttClient)).start();
 
         /**
          * For test only
@@ -57,7 +56,8 @@ public class LauncherMQTTSide {
         mqttClient.addResolver(mqttMessageWithTopic -> {
             if (mqttMessageWithTopic.getTopic().toString().endsWith("test")) {
                 String id = new PackageInfo(mqttMessageWithTopic.getMessage().toString()).getID();
-                mqttClient.publish("Package received procedure complete", id + "/ServerSideCallback");
+                if (id != null)
+                    mqttClient.publish("Package received procedure complete", id + "/ServerSideCallback");
             }
         });
 
@@ -107,10 +107,7 @@ public class LauncherMQTTSide {
             } catch (Exception e) {
                 EventRW.WriteAsRichText(false, "@LauncherMQTTSide", "Could not read from " + Resource.MQTTSIDE_STARTUP_SUBSCRIBEFILE_NAME + ". This will be ignored.");
             }
-            //enable terminal?
             terminalMQTTSide = new TerminalMQTTSide(mqttClient);
-            //todo cancle the launcher auto start after the main launcher is added
-            terminalMQTTSide.start();
         }
     }
 
@@ -118,29 +115,4 @@ public class LauncherMQTTSide {
      * Declare the terminal
      */
     public static TerminalMQTTSide terminalMQTTSide = null;
-
-    /**
-     * Refresh runtime and status per hour
-     * todo move this to the main launcher after we have a finished main launcher(laugh)
-     */
-    static class ClockThread extends Thread {
-        ServerSideMqttClient mqttClient;
-
-        public ClockThread(ServerSideMqttClient mqttClient) {
-            this.mqttClient = mqttClient;
-        }
-
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    EventRW.GainRunTime(Resource.MQTTSIDE_NAME + "_");
-                    EventRW.Write(mqttClient.readStatus(false));
-                    sleep(60000 * 60);
-                } catch (Exception e) {
-                    EventRW.Write(e);
-                }
-            }
-        }
-    }
 }

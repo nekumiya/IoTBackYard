@@ -1,8 +1,10 @@
 package com.visualdust.deliveryBackYard.mqttServerSide
 
+import com.visualdust.deliveryBackYard.common.Resource
 import com.visualdust.deliveryBackYard.common.Toolbox
 import com.visualdust.deliveryBackYard.terminal.Command
 import com.visualdust.deliveryBackYard.terminal.ITerminal
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import java.util.*
 import java.util.function.Consumer
 import kotlin.collections.HashMap
@@ -17,6 +19,7 @@ class TerminalMQTTSide : ITerminal<String> {
     constructor(mqttClient: ServerSideMqttClient) {
         this.mqttClient = mqttClient
 
+
         /**
          * Adding commands
          */
@@ -24,16 +27,16 @@ class TerminalMQTTSide : ITerminal<String> {
         this.buildInCommand(Command("mqtt-help", Consumer {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
-                0 + blankSize -> println("Help: See what you'd like to do here:\n" +
+                0 + blankSize -> println("TerminalMQTTSide: See what you'd like to do here:\n" +
                         "   [mqtt-connect]      : manual connect to the broker\n" +
                         "   [mqtt-disconnect]   : manual disconnect from the broker\n" +
                         "   [mqtt-subscribe]    : subscribe a topic\n" +
                         "   [mqtt-unsubscribe]  : unsubscribe a topic\n" +
                         "   [mqtt-publish]      : publish a message\n" +
-                        "   [mqtt-status]       : check the status of mqtt client\n>>>")
+                        "   [mqtt-status]       : check the status of mqtt client\n" + Resource.COMMAND_PROMPT)
                 else -> {
                     print("Syntax error.\n" +
-                            "Usage: mqtt-help\n>>>")
+                            "Usage: mqtt-help\n" + Resource.COMMAND_PROMPT)
                 }
             }
         }))
@@ -42,27 +45,27 @@ class TerminalMQTTSide : ITerminal<String> {
         this.buildInCommand(Command("mqtt-connect", Consumer {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
-                1 + blankSize -> mqttClient.connect(true)
-//                2 + blankSize -> {
-//                    mqttClient.`server-address` = argList[1]
-//                    mqttClient.connect()
-//                }
-//                3 + blankSize -> {
-//                    mqttClient.`server-address` = argList[1]
-//                    var option = MqttConnectOptions()
-//                    option.userName = argList[2]
-//                    mqttClient.connect(option)
-//                }
-//                4 + blankSize -> {
-//                    mqttClient.`server-address` = argList[1]
-//                    var option = MqttConnectOptions()
-//                    option.userName = argList[2]
-//                    option.password = argList[3].toCharArray()
-//                    mqttClient.connect(option)
-//                }
+                0 + blankSize -> mqttClient.connect(true)
+                1 + blankSize -> {
+                    mqttClient.`server-address` = argList[0 + blankSize]
+                    mqttClient.connect()
+                }
+                2 + blankSize -> {
+                    mqttClient.`server-address` = argList[0 + blankSize]
+                    var option = MqttConnectOptions()
+                    option.userName = argList[1 + blankSize]
+                    mqttClient.connect(option)
+                }
+                3 + blankSize -> {
+                    mqttClient.`server-address` = argList[0 + blankSize]
+                    var option = MqttConnectOptions()
+                    option.userName = argList[1 + blankSize]
+                    option.password = argList[2 + blankSize].toCharArray()
+                    mqttClient.connect(option)
+                }
                 else -> print("Syntax error.\n" +
                         "Usage: mqtt-connect [address] [username] [password]\n" +
-                        "Keep stuffs in \"[]\" empty to use default connect option\n>>>")
+                        "Keep stuffs in \"[]\" empty to use default connect option\n" + Resource.COMMAND_PROMPT)
 
             }
         }))
@@ -73,7 +76,7 @@ class TerminalMQTTSide : ITerminal<String> {
             when (argList.size) {
                 0 + blankSize -> mqttClient.disconnect()
                 else -> print("Syntax error.\n" +
-                        "Usage: mqtt-disconnect\n>>>")
+                        "Usage: mqtt-disconnect\n" + Resource.COMMAND_PROMPT)
             }
         }))
 
@@ -83,7 +86,7 @@ class TerminalMQTTSide : ITerminal<String> {
             when (argList.size) {
                 0 + blankSize -> mqttClient.reconnect()
                 else -> print("Syntax error.\n" +
-                        "Usage: mqtt-reconnect\n>>>")
+                        "Usage: mqtt-reconnect\n" + Resource.COMMAND_PROMPT)
             }
         }))
 
@@ -91,9 +94,9 @@ class TerminalMQTTSide : ITerminal<String> {
         this.buildInCommand(Command("mqtt-subscribe", Consumer {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
-                1 + blankSize -> mqttClient.subscribeTopic(argList[1])
+                1 + blankSize -> mqttClient.subscribeTopic(argList[0 + blankSize])
                 else -> print("Syntax error.\n" +
-                        "Usage: mqtt-subscribe [topic]\n>>>")
+                        "Usage: mqtt-subscribe [topic]\n" + Resource.COMMAND_PROMPT)
             }
         }))
 
@@ -101,9 +104,9 @@ class TerminalMQTTSide : ITerminal<String> {
         this.buildInCommand(Command("mqtt-unsubscribe", Consumer {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
-                1 + blankSize -> mqttClient.unsubscribeTopic(argList[0])
+                1 + blankSize -> mqttClient.unsubscribeTopic(argList[0 + blankSize])
                 else -> print("Syntax error.\n" +
-                        "Usage: mqtt-unsubscribe [topic]\n>>>")
+                        "Usage: mqtt-unsubscribe [topic]\n" + Resource.COMMAND_PROMPT)
             }
         }))
 
@@ -112,10 +115,10 @@ class TerminalMQTTSide : ITerminal<String> {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
                 2 + blankSize -> {
-                    mqttClient.publish(argList[1], argList[2])
+                    mqttClient.publish(argList[0 + blankSize], argList[1 + blankSize])
                 }
                 else -> print("Syntax error.\n" +
-                        "Usage: mqtt-publish [message] [topic]\n>>>")
+                        "Usage: mqtt-publish [message] [topic]\n" + Resource.COMMAND_PROMPT)
             }
         }))
 
@@ -124,10 +127,10 @@ class TerminalMQTTSide : ITerminal<String> {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
                 0 + blankSize -> {
-                    print(mqttClient.readStatus(false) + "\n>>>")
+                    print(mqttClient.readStatus(false) + "\n" + Resource.COMMAND_PROMPT)
                 }
                 else -> print("Syntax error.\n" +
-                        "Usage: mqtt-status\n>>>")
+                        "Usage: mqtt-status\n" + Resource.COMMAND_PROMPT)
             }
         }))
 
@@ -140,7 +143,7 @@ class TerminalMQTTSide : ITerminal<String> {
 //                    System.exit(0)
 //                }
 //                else -> print("Syntax error.\n" +
-//                        "Usage: exit\n>>>")
+//                        "Usage: exit\n"+Resource.COMMAND_PROMPT)
 //            }
 //        }))
     }
@@ -155,7 +158,7 @@ class TerminalMQTTSide : ITerminal<String> {
         if (cmdMap.containsKey(key)) {
             cmdMap.getValue(key).resolve(command.substring(key.length))
         } else {
-            print("Command not found. Why not ask for \"mqtt-help\" ?\n>>>")
+            print("Command not found. Why not ask for \"mqtt-help\" ?\n" + Resource.COMMAND_PROMPT)
         }
     }
 
