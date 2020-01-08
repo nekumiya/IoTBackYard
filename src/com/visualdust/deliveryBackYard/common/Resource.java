@@ -4,6 +4,12 @@ public class Resource {
     public static String SOFTWARE_NAME = "IotBackYard";
     public static String AUTHOR_NAME = "VisualDust";
     public static String AUTHOR_EMAIL = "VisualDust@outlook.com";
+
     public static String VERSION = "0.1.0.1";
     public static String MQTTSIDE_NAME = "@MqttServerSide";
+    public static String MQTTSIDE_CONFIGFILE_NAME = "mqttside.config";
+    public static String MQTTSIDE_STARTUP_SUBSCRIBEFILE_NAME = "mqttside.startupsubscribe";
+
+    public static String SOCKETSIDE_NAME = "@SocketServerSide";
+    public static String SOCKETSIDE_CONFIGFILE_NAME = "socketside.config";
 }

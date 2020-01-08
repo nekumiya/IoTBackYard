@@ -17,7 +17,6 @@ class TerminalMQTTSide : ITerminal<String> {
     constructor(mqttClient: ServerSideMqttClient) {
         this.mqttClient = mqttClient
 
-
         /**
          * Adding commands
          */

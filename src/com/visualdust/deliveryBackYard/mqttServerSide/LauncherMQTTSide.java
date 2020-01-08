@@ -2,6 +2,7 @@ package com.visualdust.deliveryBackYard.mqttServerSide;
 
 import com.visualdust.deliveryBackYard.common.EventRW;
 import com.visualdust.deliveryBackYard.common.LinedFile;
+import com.visualdust.deliveryBackYard.common.Resource;
 import com.visualdust.deliveryBackYard.common.Toolbox;
 import com.visualdust.deliveryBackYard.delivery.PackageInfo;
 
@@ -22,11 +23,11 @@ public class LauncherMQTTSide {
          * Trying to read config from file. Create one if config file not exist.
          */
         EventRW.Write("@LauncherMQTTSide : Reading configuration......");
-        if (!new File("mqttside.config").exists()) {
-            EventRW.WriteAsRichText(false, "@LauncherMQTTSide", "mqttside.config file not found.");
+        if (!new File(Resource.MQTTSIDE_CONFIGFILE_NAME).exists()) {
+            EventRW.WriteAsRichText(false, Resource.MQTTSIDE_NAME + "Launcher", Resource.MQTTSIDE_CONFIGFILE_NAME + " not found.");
             try {
-                EventRW.Write("Trying to create mqttside.config file......");
-                File configFile = new File("mqttside.config");
+                EventRW.Write("Trying to create " + Resource.MQTTSIDE_CONFIGFILE_NAME + "......");
+                File configFile = new File(Resource.MQTTSIDE_CONFIGFILE_NAME);
                 PrintStream printStream = new PrintStream(configFile);
                 printStream.print("#mqttside config file\n" +
                         "server-address=tcp://mqtt.visualdust.com\n" +
@@ -34,11 +35,11 @@ public class LauncherMQTTSide {
                         "login-password=\n" +
                         "mqtt-keep-alive-interval=10");
             } catch (Exception e) {
-                EventRW.WriteAsRichText(false, "Launcher", "Could not create mqttside.config file. Server will exit.");
+                EventRW.WriteAsRichText(false, Resource.MQTTSIDE_NAME + "Launcher", "Could not create " + Resource.MQTTSIDE_CONFIGFILE_NAME + ". Server will exit.");
                 System.exit(1);
             }
         }
-        ServerSideMqttClientConfigure configure = new ServerSideMqttClientConfigure(new File("mqttside.config"));
+        ServerSideMqttClientConfigure configure = new ServerSideMqttClientConfigure(new File(Resource.MQTTSIDE_CONFIGFILE_NAME));
         ServerSideMqttClient mqttClient = new ServerSideMqttClient(configure);
 
         /**
@@ -82,11 +83,10 @@ public class LauncherMQTTSide {
              */
             EventRW.Write("@LauncherMQTTSide : Launcher postprocessing......");
             try {
-                File topicFile = new File("mqttside.startupsubscribes");
+                File topicFile = new File(Resource.MQTTSIDE_STARTUP_SUBSCRIBEFILE_NAME);
                 if (!topicFile.exists()) {
-                    EventRW.WriteAsRichText(false, "@LauncherMQTTSide", "mqttside.startupsubscribe not exist");
-
-                    EventRW.Write("Trying to create mqttside.startupsubscribe file......");
+                    EventRW.WriteAsRichText(false, "@LauncherMQTTSide", Resource.MQTTSIDE_STARTUP_SUBSCRIBEFILE_NAME + " not exist");
+                    EventRW.Write("Trying to create " + Resource.MQTTSIDE_STARTUP_SUBSCRIBEFILE_NAME + " file......");
                     PrintStream printStream = new PrintStream(topicFile);
                     printStream.print("system/+\nserver/+\ndefault/+\n");
 
@@ -105,7 +105,7 @@ public class LauncherMQTTSide {
                     }
                 }
             } catch (Exception e) {
-                EventRW.WriteAsRichText(false, "@LauncherMQTTSide", "Could not mqttside.startupsubscribe config file. This will be ignored.");
+                EventRW.WriteAsRichText(false, "@LauncherMQTTSide", "Could not read from " + Resource.MQTTSIDE_STARTUP_SUBSCRIBEFILE_NAME + ". This will be ignored.");
             }
             //enable terminal?
             terminalMQTTSide = new TerminalMQTTSide(mqttClient);
@@ -121,6 +121,7 @@ public class LauncherMQTTSide {
 
     /**
      * Refresh runtime and status per hour
+     * todo move this to the main launcher after we have a finished main launcher(laugh)
      */
     static class ClockThread extends Thread {
         ServerSideMqttClient mqttClient;
@@ -133,7 +134,7 @@ public class LauncherMQTTSide {
         public void run() {
             while (true) {
                 try {
-                    EventRW.GainRunTime("mqttside_");
+                    EventRW.GainRunTime(Resource.MQTTSIDE_NAME + "_");
                     EventRW.Write(mqttClient.readStatus(false));
                     sleep(60000 * 60);
                 } catch (Exception e) {
