@@ -5,9 +5,9 @@ package com.visualdust.deliveryBackYard.infoManagement
  * @since 0.0.0.1
  * last update on 20191229
  */
-class Tag {
-    lateinit var key: String
-    lateinit var value: String
+class Tag<K,T> {
+    var key: K
+    var value: T
 
     /**
      * <p>"tag" class type is here to provide some kind of instant key-value mapping
@@ -18,7 +18,7 @@ class Tag {
      * @param key key
      * @param value inside-contain
      */
-    constructor(key: String, value: String) {
+    constructor(key: K, value: T) {
         this.key = key
         this.value = value
     }

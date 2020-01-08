@@ -1,7 +1,7 @@
 package com.visualdust.deliveryBackYard.delivery
 
-import com.visualdust.deliveryBackYard.infoManagement.InfoExtension
-import com.visualdust.deliveryBackYard.commomn.EventRW
+import com.visualdust.deliveryBackYard.infoManagement.Extension
+import com.visualdust.deliveryBackYard.common.EventRW
 
 /**
  * @author VisualDust
@@ -11,7 +11,7 @@ import com.visualdust.deliveryBackYard.commomn.EventRW
 class PackageInfo {
     lateinit protected var id: String
     var name = "null"
-    public var extension = InfoExtension()
+    public var extension = Extension<String, String>()
 
     /**
      * @param mqttMessage to initialize a [PackageInfo] using a [String]

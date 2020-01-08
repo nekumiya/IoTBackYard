@@ -1,9 +1,15 @@
 package com.visualdust.deliveryBackYard.infoManagement.user
 
-class User {
-    var id = ""
+import com.visualdust.deliveryBackYard.infoManagement.Extension
+import java.util.*
 
-    constructor(id: String?) {
-        // todo class construction
+class User {
+    private var id = ""
+    var userName = ""
+    var extension = Extension<String, String>()
+
+    constructor(id: String?, userName: String?) {
+        this.id = id ?: UUID.randomUUID().toString()
+        this.userName = userName ?: this.id
     }
 }

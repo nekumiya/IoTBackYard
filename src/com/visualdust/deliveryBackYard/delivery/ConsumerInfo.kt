@@ -1,6 +1,6 @@
 package com.visualdust.deliveryBackYard.delivery
 
-import com.visualdust.deliveryBackYard.infoManagement.InfoExtension
+import com.visualdust.deliveryBackYard.infoManagement.Extension
 
 /**
  * ConsumerInfo
@@ -14,5 +14,5 @@ import com.visualdust.deliveryBackYard.infoManagement.InfoExtension
 class ConsumerInfo {
     lateinit var uid: String
     var name: String = "Consumer"
-    var extension = InfoExtension()
+    var extension = Extension<String, String>()
 }
