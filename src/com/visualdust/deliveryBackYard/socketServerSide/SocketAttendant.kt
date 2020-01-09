@@ -5,9 +5,12 @@ import com.visualdust.deliveryBackYard.common.Resource
 import java.io.*
 import java.lang.Exception
 import java.net.Socket
+import java.util.*
 import java.util.function.Consumer
 
 class SocketAttendant : Thread {
+    public var sid: String = UUID.randomUUID().toString()
+
     lateinit var uid: String
     public lateinit var socket: Socket
 
@@ -30,6 +33,8 @@ class SocketAttendant : Thread {
     fun Initialize() {
         bufferedSocketReader = BufferedReader(InputStreamReader(socket.getInputStream()))
         bufferedSocketWriter = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
+
+        SocketPool.drop(this)
         //todo add necessary builtin resolvers here
     }
 

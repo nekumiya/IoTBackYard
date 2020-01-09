@@ -5,6 +5,7 @@ import com.visualdust.deliveryBackYard.common.Toolbox
 import com.visualdust.deliveryBackYard.terminal.Command
 import com.visualdust.deliveryBackYard.terminal.ITerminal
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
+import java.time.LocalDateTime
 import java.util.*
 import java.util.function.Consumer
 import kotlin.collections.HashMap
@@ -27,9 +28,9 @@ class TerminalMQTTSide : ITerminal<String> {
         this.buildInCommand(Command("mqtt-help", Consumer {
             var argList = Toolbox.Split(it, " ", 0)
             when (argList.size) {
-                0 + blankSize -> println("TerminalMQTTSide: See what you'd like to do here:\n" +
-                        "   [mqtt-connect]      : manual connect to the broker\n" +
-                        "   [mqtt-disconnect]   : manual disconnect from the broker\n" +
+                0 + blankSize -> print("TerminalMQTTSide: See what you'd like to do here:\n" +
+                        "   [mqtt-connect]      : manually connect to the broker\n" +
+                        "   [mqtt-disconnect]   : manually disconnect from the broker\n" +
                         "   [mqtt-subscribe]    : subscribe a topic\n" +
                         "   [mqtt-unsubscribe]  : unsubscribe a topic\n" +
                         "   [mqtt-publish]      : publish a message\n" +

@@ -9,10 +9,11 @@
 
  # IoTBackYard:痛击友军的物联网后端  
 
-> 队友们注意了！  
-* 目前处于测试阶段。测试方法 :  
+> ## 队友们注意了！目前处于测试阶段。测试方法 :    
 
- 对于物联网终端 :   
+---
+
+* 对于物联网终端 :   
 使用MQTT协议发布消息到`tcp:/mqtt.visualdust.com`,主题为id/test。(id为包裹id)消息数据类型为字符串。格式为:  
 "分隔符,包裹ID,包裹名称,扩展key01,扩展value01,扩key02,扩展value02,扩展key03,扩展value03......"(不括双引号)  
 样例: 有一个包裹,id为3a4b7c9d-3710-409a-aa8c-327396a7f88e,名称为'一个裹的名称',它的包裹内温度为20度,它的重量为5。基站应将它编成由逗号分隔的字符串,并且在主题3a4b7c9d-3710-409a-aa8c-327396a7f88e/test下发布这样一条消息:  
@@ -21,3 +22,10 @@
 注:这里的id推荐使用UUID国际标准生成。详情百科UUID。不过....其实这里的id可以是任意字符串，只是为了规范性推荐使用这一标准而已。在服务端，随机产生的id都是遵循这一标准的。  
 当你发送了这条消息后，服务器将在主题id/ServerSideCallBack下(其中id为你发送的信息的id)发布一条内容为"Package received procedure complete"来表示服务器收到并解析了你的消息，测试成功。  
 当然，每个包裹的ID应该不一样。所以针对每个不同的包裹ID服务端只处理一次。再次发送需要换一个包裹ID。
+
+---
+
+* 对于手机端软件 : 
+  直接使用websocket即可。与socket.visualdust.com建立连接，你会收到一条这样的握手消息:  
+  "handshake,@serverSideAttendant,@serverSideVersion"  
+  其中，@serverSideAttendant是服务器给你分配的独立socket的ID，@serverSideVersion是服务器端当前版本号。（注：由于某些奇怪的，服务器为每一个连接的socket分配单独的socketAttendant。）

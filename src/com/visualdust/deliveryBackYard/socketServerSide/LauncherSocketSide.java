@@ -9,7 +9,6 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.UUID;
 
 public class LauncherSocketSide {
     public static ServerSocket serverSocket = null;

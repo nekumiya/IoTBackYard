@@ -1,0 +1,359 @@
+2020-01-09T09:46:55.424994400 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T09:46:55.424994400 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T09:46:55.424994400 Event : [×]@MqttServerSideLaunchermqttside.config not found.  
+2020-01-09T09:46:55.424994400 Event : Trying to create mqttside.config......  
+2020-01-09T09:46:55.756916700 Event : @MqttServerSide->Client : Trying to connect to : tcp://mqtt.visualdust.com......
+  
+2020-01-09T09:46:56.467591 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91Connected to tcp://mqtt.visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T09:46:56.467591 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$36/0x0000000800bbf840@2cfb4a64 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91  
+2020-01-09T09:46:56.467591 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$37/0x0000000800bbfc40@4b6995df to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91  
+2020-01-09T09:46:56.467591 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T09:46:56.467591 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T09:46:56.467591 Event : [×]@SocketServerSidemqttside.config not found.  
+2020-01-09T09:46:56.467591 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T09:46:56.467591 Event : Trying to create socketside.config......  
+2020-01-09T09:46:56.467591 Event : [×]@LauncherMQTTSidemqttside.startupsubscribe not exist  
+2020-01-09T09:46:56.467591 Event : Trying to create mqttside.startupsubscribe file......  
+2020-01-09T09:46:56.467591 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T09:46:56.477521800 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T09:47:01.572359100 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91  
+2020-01-09T09:47:01.641017 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91  
+2020-01-09T09:47:01.723464700 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91  
+2020-01-09T09:47:02.495037600 Event : [@MqttServerSide_>Runtime]>2020-01-09T09:47:02.495037600>Version=0.3.0.1>ServerRuntimeClockBump: 1 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         2
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://mqtt.visualdust.com
+       <CurrentServerAddress>  tcp://mqtt.visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T09:47:43.352396 Event : @MqttServerSide->Client : Subscribed topic "lalala" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@25618e91  
+2020-01-09T09:48:07.989253100 Event : <MQTTMessageReceived>: 2020-01-09T09:48:07.989253100 > lalala>"wdnmd"  
+2020-01-09T13:15:30.452692400 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:15:30.453689 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:15:30.495278600 Event : @MqttServerSide->Client : Trying to connect to : tcp://mqtt.visualdust.com......
+  
+2020-01-09T13:15:31.112876800 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://mqtt.visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:15:31.112876800 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$33/0x0000000800bbac40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:15:31.112876800 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$34/0x0000000800bbf840@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:15:31.112876800 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$35/0x0000000800bbfc40@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:15:31.112876800 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:15:31.112876800 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:15:31.112876800 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:15:31.112876800 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:15:31.112876800 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:15:36.211517200 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:15:36.277102500 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:15:36.358369600 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:15:37.120954500 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:15:37.120954500>Version=0.3.0.1>ServerRuntimeClockBump: 2 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         3
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://mqtt.visualdust.com
+       <CurrentServerAddress>  tcp://mqtt.visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:16:07.711514300 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "3eda8dd4-50c2-4aba-9830-81023ddf0d95ttest>"140721800"" finished.  
+2020-01-09T13:16:07.711514300 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@1c2194c1, Delivery complete  
+2020-01-09T13:17:46.151995700 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:17:46.151995700 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:17:46.214479500 Event : @MqttServerSide->Client : Trying to connect to : tcp://mqtt.visualdust.com......
+  
+2020-01-09T13:17:46.776848100 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://mqtt.visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:17:46.776848100 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$33/0x0000000800bbac40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:17:46.776848100 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$34/0x0000000800bbf840@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:17:46.776848100 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$35/0x0000000800bbfc40@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:17:46.776848100 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:17:46.776848100 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:17:46.776848100 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:17:46.776848100 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:17:46.776848100 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:17:51.871435400 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:17:51.956223100 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:17:52.024890600 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:17:52.790200800 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:17:52.790200800>Version=0.3.0.1>ServerRuntimeClockBump: 3 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         3
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://mqtt.visualdust.com
+       <CurrentServerAddress>  tcp://mqtt.visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:17:59.155177400 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "9cb84b30-9797-439f-b163-5c45a9a93754/ttest>"803285800"" finished.  
+2020-01-09T13:17:59.155177400 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@1c2194c1, Delivery complete  
+2020-01-09T13:18:17.395843200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "2feed82e-4c31-49a1-bc72-dc6e5a41621c/ttest>"212590300"" finished.  
+2020-01-09T13:18:17.395843200 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@3bb7c9a9, Delivery complete  
+2020-01-09T13:18:45.455657600 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "3f3d760a-c90b-465c-8a25-a80336e3f25b/ttest>"368241500"" finished.  
+2020-01-09T13:18:45.455657600 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@35b13954, Delivery complete  
+2020-01-09T13:18:56.436150 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "3173e300-c8b2-4d4c-8a4d-9ee94aa19417/ttest>"174969400"" finished.  
+2020-01-09T13:18:56.436150 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@4a68814a, Delivery complete  
+2020-01-09T13:19:14.916416600 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "b39de48e-e60f-4b56-9479-a310f97fb189/ttest>"791571400"" finished.  
+2020-01-09T13:19:14.916416600 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@5a7f835a, Delivery complete  
+2020-01-09T13:19:21.931611900 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "b5b0b42f-0e1d-4fe0-9c6c-86f6b18cf266/ttest>"827653200"" finished.  
+2020-01-09T13:19:21.931611900 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@5f80f33d, Delivery complete  
+2020-01-09T13:23:12.141848 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:23:12.141848 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:23:12.219955400 Event : @MqttServerSide->Client : Trying to connect to : tcp://visualdust.com......
+  
+2020-01-09T13:23:12.823716200 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:23:12.823716200 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$33/0x0000000800bbac40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:23:12.823716200 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$34/0x0000000800bbf840@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:23:12.823716200 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$35/0x0000000800bbfc40@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:23:12.823716200 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:23:12.823716200 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:23:12.823716200 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:23:12.823716200 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:23:12.839337100 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:23:17.937965500 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:23:18.031570700 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:23:18.141037 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:23:18.843579100 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:23:18.843579100>Version=0.3.0.1>ServerRuntimeClockBump: 4 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         3
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://visualdust.com
+       <CurrentServerAddress>  tcp://visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:23:52.791097900 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "bb8a1278-4c3f-4496-81cf-10b14da0f16a/ttest>"334246800"" finished.  
+2020-01-09T13:23:52.791097900 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@42ef56e, Delivery complete  
+2020-01-09T13:24:19.850116900 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "ba6b860a-59f4-406b-a6a8-868933194d91/ttest>"579768700"" finished.  
+2020-01-09T13:24:19.850116900 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@4923198, Delivery complete  
+2020-01-09T13:30:09.678193100 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:30:09.678193100 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:30:09.730417600 Event : @MqttServerSide->Client : Trying to connect to : tcp://visualdust.com......
+  
+2020-01-09T13:30:10.502914800 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:30:10.502914800 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$33/0x0000000800bbac40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:30:10.502914800 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$34/0x0000000800bbf840@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:30:10.502914800 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$35/0x0000000800bbfc40@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:30:10.502914800 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$36/0x0000000800bbf040@8807e25 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:30:10.502914800 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:30:10.502914800 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:30:10.502914800 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:30:10.502914800 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:30:10.502914800 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:30:15.613497300 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:30:15.738631800 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:30:15.891010800 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:30:16.504124800 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:30:16.504124800>Version=0.3.0.1>ServerRuntimeClockBump: 5 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         4
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://visualdust.com
+       <CurrentServerAddress>  tcp://visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:30:46.188003500 Event : @MqttServerSide->Client : Subscribed topic "sdawsfasasdfdasfdsaffsd" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:31:24.817179 Event : @MqttServerSide->Client : Subscribed topic "+/rtest" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:31:29.905283500 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "fb2eb71b-98f9-4dc2-8ef1-d9af7e079d8d/ttest>"563076000"" finished.  
+2020-01-09T13:31:29.905283500 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@28697223, Delivery complete  
+2020-01-09T13:32:49.022675 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:32:49.022675 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:32:49.069541200 Event : @MqttServerSide->Client : Trying to connect to : tcp://visualdust.com......
+  
+2020-01-09T13:32:50.057923900 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:32:50.057923900 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$37/0x0000000800bbec40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:32:50.057923900 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$38/0x0000000800bbe040@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:32:50.057923900 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$39/0x0000000800bbe440@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:32:50.057923900 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$40/0x0000000800bbd840@8807e25 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:32:50.057923900 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:32:50.057923900 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:32:50.057923900 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:32:50.057923900 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:32:50.057923900 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:32:55.340779900 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:32:55.503239400 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:32:55.737552700 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:32:56.059983900 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:32:56.058986300>Version=0.3.0.1>ServerRuntimeClockBump: 6 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         4
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://visualdust.com
+       <CurrentServerAddress>  tcp://visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:33:16.646679500 Event : @MqttServerSide->Client : Subscribed topic "+/rtest" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:33:22.575213300 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "5a7675c6-dcdd-471a-8551-297a34f6f342/ttest>"207121300"" finished.  
+2020-01-09T13:33:22.575213300 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@7a8570b7, Delivery complete  
+2020-01-09T13:33:22.733558200 Event : <MQTTMessageReceived>: 2020-01-09T13:33:22.733558200 > 5a7675c6-dcdd-471a-8551-297a34f6f342/rtest>"207121300"  
+2020-01-09T13:33:22.861125100 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "null/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:33:22.862122400 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@311fe92f, Delivery complete  
+2020-01-09T13:33:29.319529600 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "fc4cce24-517f-4830-b126-e784f462e117/ttest>"194386800"" finished.  
+2020-01-09T13:33:29.330871200 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@55fdfdf2, Delivery complete  
+2020-01-09T13:33:29.500128500 Event : <MQTTMessageReceived>: 2020-01-09T13:33:29.500128500 > fc4cce24-517f-4830-b126-e784f462e117/rtest>"194386800"  
+2020-01-09T13:33:29.648105800 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:33:29.648105800 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@62c3c6f6, Delivery complete  
+2020-01-09T13:33:56.398140300 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:33:56.398140300 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:33:56.445002900 Event : @MqttServerSide->Client : Trying to connect to : tcp://visualdust.com......
+  
+2020-01-09T13:33:57.141604400 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:33:57.142602400 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$33/0x0000000800bbac40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:33:57.142602400 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$34/0x0000000800bbf840@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:33:57.142602400 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$35/0x0000000800bbfc40@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:33:57.143647400 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$36/0x0000000800bbf040@8807e25 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:33:57.143647400 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:33:57.143647400 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:33:57.143647400 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:33:57.143647400 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:33:57.143647400 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:34:02.275227700 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:02.450712900 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:02.764165600 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:03.146571 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:34:03.145572900>Version=0.3.0.1>ServerRuntimeClockBump: 7 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         4
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://visualdust.com
+       <CurrentServerAddress>  tcp://visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:34:12.726121300 Event : @MqttServerSide->Client : Subscribed topic "+/rtest" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:17.495948700 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "f69d0905-bb9d-4c50-89e9-e7e76e5803e9/ttest>"133754800"" finished.  
+2020-01-09T13:34:17.495948700 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@3e21520c, Delivery complete  
+2020-01-09T13:34:17.836125500 Event : <MQTTMessageReceived>: 2020-01-09T13:34:17.836125500 > f69d0905-bb9d-4c50-89e9-e7e76e5803e9/rtest>"133754800"  
+2020-01-09T13:34:18.017606200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:34:18.018293100 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@3e5783ed, Delivery complete  
+2020-01-09T13:34:35.835209900 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "9a7ac2f8-7ff5-45ab-a8dd-f3803aa1c862/ttest>"446208900"" finished.  
+2020-01-09T13:34:35.835209900 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@3810f490, Delivery complete  
+2020-01-09T13:34:36.182811300 Event : <MQTTMessageReceived>: 2020-01-09T13:34:36.182811300 > 9a7ac2f8-7ff5-45ab-a8dd-f3803aa1c862/rtest>"446208900"  
+2020-01-09T13:34:36.331860800 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "null/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:34:36.332586100 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@62c3c6f6, Delivery complete  
+2020-01-09T13:34:50.473344 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:34:50.473344 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:34:50.536954300 Event : @MqttServerSide->Client : Trying to connect to : tcp://visualdust.com......
+  
+2020-01-09T13:34:51.245770600 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:34:51.245770600 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$33/0x0000000800bbac40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:51.245770600 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$34/0x0000000800bbf840@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:51.245770600 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$35/0x0000000800bbfc40@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:51.245770600 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$36/0x0000000800bbf040@8807e25 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:51.245770600 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:34:51.245770600 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:34:51.245770600 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:34:51.245770600 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:34:51.245770600 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:34:56.430691800 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:56.571157 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:56.697387600 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:34:57.256741600 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:34:57.256741600>Version=0.3.0.1>ServerRuntimeClockBump: 8 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         4
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://visualdust.com
+       <CurrentServerAddress>  tcp://visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:35:15.226013600 Event : @MqttServerSide->Client : Subscribed topic "+/rtest" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:35:19.872041300 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "7dc1c02a-6dd6-44da-a113-92d9c88bb672/ttest>"403285700"" finished.  
+2020-01-09T13:35:19.872041300 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@7a8570b7, Delivery complete  
+2020-01-09T13:35:20.056829200 Event : <MQTTMessageReceived>: 2020-01-09T13:35:20.056829200 > 7dc1c02a-6dd6-44da-a113-92d9c88bb672/rtest>"403285700"  
+2020-01-09T13:35:20.172064200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:35:20.172983700 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@317bad19, Delivery complete  
+2020-01-09T13:36:56.396916600 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "e66661e0-4865-44f9-9b96-021d3b385867/ttest>"181915400"" finished.  
+2020-01-09T13:36:56.396916600 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@55fdfdf2, Delivery complete  
+2020-01-09T13:36:56.946872500 Event : <MQTTMessageReceived>: 2020-01-09T13:36:56.946872500 > e66661e0-4865-44f9-9b96-021d3b385867/rtest>"181915400"  
+2020-01-09T13:36:57.079421800 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:36:57.080419400 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@280e9808, Delivery complete  
+2020-01-09T13:38:12.026428400 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "31cc78f1-d353-4d53-80d9-c7ee255b07e4/ttest>"927856200"" finished.  
+2020-01-09T13:38:12.026428400 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@12220f75, Delivery complete  
+2020-01-09T13:38:12.206471300 Event : <MQTTMessageReceived>: 2020-01-09T13:38:12.206471300 > 31cc78f1-d353-4d53-80d9-c7ee255b07e4/rtest>"927856200"  
+2020-01-09T13:38:12.333310700 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:38:12.333310700 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@1e3a92ca, Delivery complete  
+2020-01-09T13:38:17.851515500 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "18fc0a18-c228-4faf-8cca-8751518aaff3/ttest>"713154100"" finished.  
+2020-01-09T13:38:17.851515500 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@7486d843, Delivery complete  
+2020-01-09T13:38:18.035217700 Event : <MQTTMessageReceived>: 2020-01-09T13:38:18.035217700 > 18fc0a18-c228-4faf-8cca-8751518aaff3/rtest>"713154100"  
+2020-01-09T13:38:19.162684 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:38:19.162684 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@5f34b1bb, Delivery complete  
+2020-01-09T13:38:59.016487500 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:38:59.016487500 Event : @LauncherMQTTSide : Reading configuration......  
+2020-01-09T13:38:59.078972600 Event : @MqttServerSide->Client : Trying to connect to : tcp://visualdust.com......
+  
+2020-01-09T13:39:00.025096300 Event : [√]com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8Connected to tcp://visualdust.com:1883 with the identified uid +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+  
+2020-01-09T13:39:00.025096300 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$37/0x0000000800bbec40@3339ad8e to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:00.025096300 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$38/0x0000000800bbe040@6d1e7682 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:00.025096300 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$39/0x0000000800bbe440@3c679bde to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:00.025096300 Event : @MqttServerSide->Client : Added resolver: com.visualdust.deliveryBackYard.mqttServerSide.LauncherMQTTSide$$Lambda$40/0x0000000800bbd840@8807e25 to com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:00.025096300 Event : ---<---BackyardMQTTSide starting up......--->---  
+2020-01-09T13:39:00.025096300 Event : @LauncherSocketSide : Reading configuration......  
+2020-01-09T13:39:00.025096300 Event : @LauncherMQTTSide : Launcher postprocessing......  
+2020-01-09T13:39:00.025096300 Event : @LauncherMQTTSide : Subscribe pre-added topics from file......  
+2020-01-09T13:39:00.025096300 Event : [√]Thread[Thread-8,5,main]Socket on 22519Started to oversee.  
+2020-01-09T13:39:05.167379700 Event : @MqttServerSide->Client : Subscribed topic "system/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:05.308128400 Event : @MqttServerSide->Client : Subscribed topic "server/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:05.914889400 Event : @MqttServerSide->Client : Subscribed topic "default/+" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:06.028212 Event : [@MqttServerSide_>Runtime]>2020-01-09T13:39:06.028212>Version=0.3.0.1>ServerRuntimeClockBump: 9 hour(s) after server launched
+   ---<---Status of com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8--->---
+   [Client]
+       <ClientID>              +BackYard_03de2b7d-ee20-46d0-a349-fe38d4cc5b9d+
+       <ResolverCount>         4
+   [ConnectionStatus]
+       <TargetServerAddress>   tcp://visualdust.com
+       <CurrentServerAddress>  tcp://visualdust.com:1883
+       <IsConnected>           true
+  
+2020-01-09T13:39:25.154874100 Event : @MqttServerSide->Client : Subscribed topic "+/rtest" by com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8  
+2020-01-09T13:39:30.449532200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "5efc5aae-9563-44e4-91b8-a1691cb67364/ttest>"45260000"" finished.  
+2020-01-09T13:39:30.449532200 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@7a8570b7, Delivery complete  
+2020-01-09T13:39:30.591633200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "0d950dbf-2c16-452e-9a10-89015eb83c76/ttest>"449532200"" finished.  
+2020-01-09T13:39:30.591633200 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@55fdfdf2, Delivery complete  
+2020-01-09T13:39:30.649371300 Event : <MQTTMessageReceived>: 2020-01-09T13:39:30.649371300 > 5efc5aae-9563-44e4-91b8-a1691cb67364/rtest>"45260000"  
+2020-01-09T13:39:30.728339800 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "efd56ced-99c7-48ea-9f2f-4987bf70683a/ttest>"591633200"" finished.  
+2020-01-09T13:39:30.891958500 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:30.892675900 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@12220f75, Delivery complete  
+2020-01-09T13:39:30.892675900 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@3e5783ed, Delivery complete  
+2020-01-09T13:39:30.901930900 Event : <MQTTMessageReceived>: 2020-01-09T13:39:30.900969200 > 0d950dbf-2c16-452e-9a10-89015eb83c76/rtest>"449532200"  
+2020-01-09T13:39:31.383785200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "57222835-8751-449e-9d49-cb066d558188/ttest>"728339800"" finished.  
+2020-01-09T13:39:31.383785200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "null/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:31.387512100 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@7486d843, Delivery complete  
+2020-01-09T13:39:31.387512100 Event : <MQTTMessageReceived>: 2020-01-09T13:39:31.387512100 > efd56ced-99c7-48ea-9f2f-4987bf70683a/rtest>"591633200"  
+2020-01-09T13:39:31.535549800 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "7e148b51-ec24-4c17-99c1-5ccaa1509f7a/ttest>"383785200"" finished.  
+2020-01-09T13:39:31.666797 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:31.667475300 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@62c3c6f6, Delivery complete  
+2020-01-09T13:39:31.667475300 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@25571eac, Delivery complete  
+2020-01-09T13:39:31.667475300 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@43cb99f5, Delivery complete  
+2020-01-09T13:39:31.712635900 Event : <MQTTMessageReceived>: 2020-01-09T13:39:31.711638400 > 57222835-8751-449e-9d49-cb066d558188/rtest>"728339800"  
+2020-01-09T13:39:31.793424700 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "e0a62009-6d6f-487a-9f51-b64a5b9bfa61/ttest>"535549800"" finished.  
+2020-01-09T13:39:31.920233200 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:31.920233200 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@1f7f7599, Delivery complete  
+2020-01-09T13:39:31.921229600 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@248f7db7, Delivery complete  
+2020-01-09T13:39:31.952531800 Event : <MQTTMessageReceived>: 2020-01-09T13:39:31.952531800 > 7e148b51-ec24-4c17-99c1-5ccaa1509f7a/rtest>"383785200"  
+2020-01-09T13:39:32.043340300 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "55cc9aad-4148-4d26-8c8a-1a13b6605000/ttest>"793424700"" finished.  
+2020-01-09T13:39:32.179641300 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "null/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:32.179641300 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@1da498a4, Delivery complete  
+2020-01-09T13:39:32.180550700 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@2645da20, Delivery complete  
+2020-01-09T13:39:32.203489700 Event : <MQTTMessageReceived>: 2020-01-09T13:39:32.203489700 > e0a62009-6d6f-487a-9f51-b64a5b9bfa61/rtest>"535549800"  
+2020-01-09T13:39:32.204487400 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "b6c61c45-b3ef-4966-bbac-4c72311834f1/ttest>"43340300"" finished.  
+2020-01-09T13:39:32.478224700 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:32.478224700 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "22140aae-d215-4c63-bb57-6dcc3d1066ed/ttest>"204487400"" finished.  
+2020-01-09T13:39:32.478224700 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@5fa21f93, Delivery complete  
+2020-01-09T13:39:32.478224700 Event : <MQTTMessageReceived>: 2020-01-09T13:39:32.478224700 > 55cc9aad-4148-4d26-8c8a-1a13b6605000/rtest>"793424700"  
+2020-01-09T13:39:32.747066600 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "77e763ad-adbf-41ef-b660-85e95ab79af2/ttest>"478224700"" finished.  
+2020-01-09T13:39:32.747066600 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "null/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:32.748028700 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@5acd4c68, Delivery complete  
+2020-01-09T13:39:32.748028700 Event : <MQTTMessageReceived>: 2020-01-09T13:39:32.748028700 > b6c61c45-b3ef-4966-bbac-4c72311834f1/rtest>"43340300"  
+2020-01-09T13:39:33.024548600 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "null/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:33.024548600 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@421dc8b5, Delivery complete  
+2020-01-09T13:39:33.024548600 Event : <MQTTMessageReceived>: 2020-01-09T13:39:33.024548600 > 22140aae-d215-4c63-bb57-6dcc3d1066ed/rtest>"204487400"  
+2020-01-09T13:39:33.450303 Event : @MqttServerSide->Client : com.visualdust.deliveryBackYard.mqttServerSide.ServerSideMqttClient@3cd1f1c8 publish procedure for "/ServerSideCallback>"Package received procedure complete"" finished.  
+2020-01-09T13:39:33.451299700 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@26aaaed2, Delivery complete  
+2020-01-09T13:39:33.452267100 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@45d662f5, Delivery complete  
+2020-01-09T13:39:33.452267100 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@1aebdd3d, Delivery complete  
+2020-01-09T13:39:33.453262900 Event : [√]org.eclipse.paho.client.mqttv3.MqttDeliveryToken@12f7809a, Delivery complete  
