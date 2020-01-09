@@ -25,7 +25,8 @@
 
 ---
 
-* 对于手机端软件 : 
+* 对于手机端软件 :   
   直接使用websocket即可。与socket.visualdust.com建立连接，你会收到一条这样的握手消息:  
   "handshake,@serverSideAttendant,@serverSideVersion"  
-  其中，@serverSideAttendant是服务器给你分配的独立socket的ID，@serverSideVersion是服务器端当前版本号。（注：由于某些奇怪的，服务器为每一个连接的socket分配单独的socketAttendant。）
+  其中，@serverSideAttendant是服务器给你分配的独立socket的ID，@serverSideVersion是服务器端当前版本号。（注：由于某些奇怪的，服务器为每一个连接的socket分配单独的socketAttendant。）  
+  如果你收到了，表示测试成功
